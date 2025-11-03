@@ -318,7 +318,7 @@
     <div class="controls">
         <div class="control-group" id="controls">
             <label>🔍 Zoom: <span id="zoomValue">100%</span></label>
-            <input type="range" id="zoomSlider" min="50" max="200" value="100">
+            <input type="range" id="zoomSlider" min="50" max="300" value="100">
         </div>
     </div>
 
@@ -377,7 +377,20 @@ uploadInput.addEventListener("change", function(e) {
     const img = new Image();
     img.onload = function() {
         uploadedImage = img;
-        imageScale = 1;
+        
+        // Calculate initial scale to fit the image properly
+        // For portrait images (tall), fit to width
+        // For landscape images (wide), fit to height
+        const imageAspect = img.width / img.height;
+        
+        if (imageAspect < 1) {
+            // Portrait: fit width
+            imageScale = 1.0;
+        } else {
+            // Landscape or square: fit height
+            imageScale = 1.0;
+        }
+        
         imageX = 0;
         imageY = 0;
         zoomSlider.value = 100;
@@ -477,23 +490,33 @@ function drawImage() {
     ctx.closePath();
     ctx.clip();
 
-    // Calculate dimensions
-    const size = Math.min(uploadedImage.width, uploadedImage.height);
-    const scaledSize = canvas.width * imageScale;
-    const offsetX = (canvas.width - scaledSize) / 2 + imageX;
-    const offsetY = (canvas.height - scaledSize) / 2 + imageY;
+    // Calculate image dimensions and positioning
+    const imgWidth = uploadedImage.width;
+    const imgHeight = uploadedImage.height;
+    const canvasSize = canvas.width;
+    
+    // Calculate the size to cover the entire circular area
+    let drawWidth, drawHeight;
+    
+    if (imgWidth > imgHeight) {
+        // Landscape image
+        drawHeight = canvasSize * imageScale;
+        drawWidth = (imgWidth / imgHeight) * drawHeight;
+    } else {
+        // Portrait or square image
+        drawWidth = canvasSize * imageScale;
+        drawHeight = (imgHeight / imgWidth) * drawWidth;
+    }
+    
+    // Center the image and apply user positioning
+    const offsetX = (canvasSize - drawWidth) / 2 + imageX;
+    const offsetY = (canvasSize - drawHeight) / 2 + imageY;
 
-    // Draw image
+    // Draw the full image (no cropping)
     ctx.drawImage(
         uploadedImage,
-        (uploadedImage.width - size) / 2,
-        (uploadedImage.height - size) / 2,
-        size,
-        size,
-        offsetX,
-        offsetY,
-        scaledSize,
-        scaledSize
+        0, 0, imgWidth, imgHeight,  // Source: entire image
+        offsetX, offsetY, drawWidth, drawHeight  // Destination: scaled and positioned
     );
 
     ctx.restore();
@@ -546,22 +569,34 @@ function downloadImage() {
     finalCtx.closePath();
     finalCtx.clip();
 
-    const size = Math.min(uploadedImage.width, uploadedImage.height);
-    const scaledSize = 530 * imageScale;
-    const scale = 600 / 290; // Scaling factor from canvas to final image
-    const offsetX = (600 - scaledSize) / 2 + (imageX * scale);
-    const offsetY = (600 - scaledSize) / 2 + (imageY * scale);
+    // Calculate scaling from preview canvas to final canvas
+    const scale = 600 / 290;
+    
+    const imgWidth = uploadedImage.width;
+    const imgHeight = uploadedImage.height;
+    const finalCanvasSize = 600;
+    
+    // Calculate the size to match the preview
+    let drawWidth, drawHeight;
+    
+    if (imgWidth > imgHeight) {
+        // Landscape image
+        drawHeight = (290 * imageScale) * scale;
+        drawWidth = (imgWidth / imgHeight) * drawHeight;
+    } else {
+        // Portrait or square image
+        drawWidth = (290 * imageScale) * scale;
+        drawHeight = (imgHeight / imgWidth) * drawWidth;
+    }
+    
+    // Apply the same positioning as in preview
+    const offsetX = (finalCanvasSize - drawWidth) / 2 + (imageX * scale);
+    const offsetY = (finalCanvasSize - drawHeight) / 2 + (imageY * scale);
 
     finalCtx.drawImage(
         uploadedImage,
-        (uploadedImage.width - size) / 2,
-        (uploadedImage.height - size) / 2,
-        size,
-        size,
-        offsetX,
-        offsetY,
-        scaledSize,
-        scaledSize
+        0, 0, imgWidth, imgHeight,
+        offsetX, offsetY, drawWidth, drawHeight
     );
 
     finalCtx.restore();
