@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Circle Photo Frame</title>
+<title>Experts Live Emirates - Attendee Frame</title>
 <style>
     * {
         margin: 0;
@@ -13,9 +13,9 @@
 
     body {
         font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        background: linear-gradient(135deg, #0a1628 0%, #1a2744 50%, #0f2557 100%);
+        background: linear-gradient(135deg, #1e3a5f 0%, #2d5a7b 50%, #1a4d6d 100%);
         min-height: 100vh;
-        padding: 20px;
+        padding: 0;
         position: relative;
         overflow-x: hidden;
     }
@@ -23,7 +23,7 @@
     /* Animated background particles */
     .particle {
         position: fixed;
-        background: rgba(100, 150, 255, 0.15);
+        background: rgba(100, 150, 255, 0.1);
         border-radius: 50%;
         animation: float 15s infinite;
         pointer-events: none;
@@ -35,130 +35,259 @@
         66% { transform: translate(-20px, 20px) rotate(240deg); }
     }
 
-    h2 {
+    .header {
+        background: linear-gradient(135deg, #2d4a6a 0%, #4a7ba7 100%);
+        padding: 50px 20px;
+        text-align: center;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+    }
+
+    .header h1 {
         color: white;
         font-size: 2.5em;
-        margin-bottom: 30px;
-        text-align: center;
-        text-shadow: 2px 2px 10px rgba(0,0,0,0.5);
-        animation: fadeInDown 0.8s ease;
+        margin-bottom: 10px;
+        text-shadow: 2px 2px 10px rgba(0,0,0,0.3);
     }
 
-    @keyframes fadeInDown {
-        from {
-            opacity: 0;
-            transform: translateY(-30px);
-        }
-        to {
-            opacity: 1;
-            transform: translateY(0);
-        }
+    .header p {
+        color: rgba(255,255,255,0.9);
+        font-size: 1.2em;
     }
 
-    .container {
+    .header .organizer {
+        color: rgba(255,255,255,0.8);
+        font-size: 1em;
+        margin-top: 10px;
+        font-style: italic;
+    }
+
+    .main-container {
+        max-width: 1400px;
+        margin: 40px auto;
+        padding: 0 20px;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 40px;
+        align-items: start;
+    }
+
+    .form-section {
+        background: white;
+        padding: 40px;
+        border-radius: 20px;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+    }
+
+    .preview-section {
         background: rgba(255, 255, 255, 0.95);
         padding: 40px;
-        border-radius: 24px;
-        box-shadow: 0 20px 60px rgba(0,0,0,0.5);
-        max-width: 500px;
-        width: 100%;
-        margin: 0 auto 40px;
-        animation: fadeInUp 0.8s ease;
-        position: relative;
-    }
-
-    @keyframes fadeInUp {
-        from {
-            opacity: 0;
-            transform: translateY(30px);
-        }
-        to {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    }
-
-    .title {
-        font-size: 1.3em;
-        font-weight: bold;
-        color: #333;
-        margin-bottom: 20px;
-        text-align: center;
-    }
-
-    .frame-box {
-        width: 320px;
-        height: 320px;
-        margin: 20px auto;
-        position: relative;
-        border-radius: 50%;
-        background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-        padding: 8px;
+        border-radius: 20px;
         box-shadow: 0 10px 40px rgba(0,0,0,0.2);
-        transition: transform 0.3s ease;
+        position: sticky;
+        top: 20px;
     }
 
-    .frame-box:hover {
-        transform: scale(1.02);
+    .form-group {
+        margin-bottom: 25px;
     }
 
-    .frame-inner {
+    .form-group label {
+        display: block;
+        color: #2d4a6a;
+        font-weight: 600;
+        margin-bottom: 8px;
+        font-size: 0.95em;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+
+    .form-group label .required {
+        color: #e74c3c;
+    }
+
+    .form-group input {
         width: 100%;
-        height: 100%;
+        padding: 14px;
+        border: 2px solid #e0e0e0;
+        border-radius: 10px;
+        font-size: 16px;
+        transition: all 0.3s ease;
+        background: #f8f9fa;
+    }
+
+    .form-group input:focus {
+        outline: none;
+        border-color: #4a7ba7;
+        background: white;
+        box-shadow: 0 0 0 3px rgba(74, 123, 167, 0.1);
+    }
+
+    .upload-area {
+        border: 3px dashed #4a7ba7;
+        border-radius: 15px;
+        padding: 40px;
+        text-align: center;
+        background: #f0f8ff;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+    .upload-area:hover {
+        background: #e6f2ff;
+        border-color: #2d5a7b;
+    }
+
+    .upload-area p {
+        color: #2d4a6a;
+        font-weight: 600;
+        margin-bottom: 5px;
+    }
+
+    .upload-area small {
+        color: #666;
+        font-size: 0.9em;
+    }
+
+    .frame-preview {
+        width: 100%;
+        max-width: 500px;
+        margin: 0 auto 20px;
+        background: #1a1a2e;
+        border-radius: 20px;
+        padding: 20px;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+    }
+
+    .badge-container {
+        position: relative;
+        aspect-ratio: 16/9;
+        background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+        border-radius: 15px;
+        padding: 25px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .badge-left {
+        flex: 1;
+        color: white;
+    }
+
+    .badge-title {
+        color: #4a9eff;
+        font-size: 1.1em;
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+
+    .badge-event {
+        font-size: 2em;
+        font-weight: bold;
+        color: #4ac3ff;
+        line-height: 1.2;
+        margin-bottom: 8px;
+    }
+
+    .badge-tagline {
+        font-size: 0.85em;
+        color: #bbb;
+        margin-bottom: 15px;
+    }
+
+    .badge-date {
+        background: rgba(74, 195, 255, 0.2);
+        padding: 8px 15px;
+        border-radius: 8px;
+        display: inline-block;
+        font-size: 0.9em;
+        margin-top: 10px;
+    }
+
+    .badge-right {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+    }
+
+    .photo-circle {
+        width: 180px;
+        height: 180px;
         border-radius: 50%;
         background: white;
-        padding: 6px;
-        position: relative;
-    }
-
-    .canvas-container {
-        width: 100%;
-        height: 100%;
-        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
         overflow: hidden;
-        background: #f0f0f0;
+        border: 4px solid #4a9eff;
         position: relative;
     }
 
     canvas {
         border-radius: 50%;
         cursor: grab;
-        user-select: none;
     }
 
     canvas:active {
         cursor: grabbing;
     }
 
-    .placeholder {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        color: #999;
-        font-size: 1.1em;
+    .placeholder-circle {
+        color: #ccc;
+        font-size: 3em;
+    }
+
+    .attendee-label {
+        color: #4a9eff;
+        font-size: 1.2em;
+        font-weight: bold;
+        writing-mode: vertical-rl;
+        text-orientation: mixed;
+        letter-spacing: 3px;
+    }
+
+    .user-info {
+        background: rgba(255,255,255,0.1);
+        padding: 15px;
+        border-radius: 10px;
+        margin-top: 15px;
         text-align: center;
-        pointer-events: none;
+        min-height: 80px;
+    }
+
+    .user-name {
+        font-size: 1.3em;
+        font-weight: bold;
+        color: white;
+        margin-bottom: 5px;
+    }
+
+    .user-job {
+        font-size: 0.95em;
+        color: #4ac3ff;
+        margin-bottom: 3px;
+    }
+
+    .user-company {
+        font-size: 0.9em;
+        color: #aaa;
     }
 
     .controls {
-        margin-top: 20px;
-    }
-
-    .control-group {
-        margin-bottom: 15px;
+        margin-top: 15px;
         display: none;
     }
 
-    .control-group.active {
+    .controls.active {
         display: block;
     }
 
-    .control-group label {
+    .controls label {
         display: block;
-        margin-bottom: 8px;
         color: #555;
         font-weight: 600;
+        margin-bottom: 8px;
         font-size: 0.9em;
     }
 
@@ -173,11 +302,10 @@
 
     input[type="range"]::-webkit-slider-thumb {
         -webkit-appearance: none;
-        appearance: none;
         width: 18px;
         height: 18px;
         border-radius: 50%;
-        background: #667eea;
+        background: #4a7ba7;
         cursor: pointer;
         box-shadow: 0 2px 6px rgba(0,0,0,0.2);
     }
@@ -186,90 +314,108 @@
         width: 18px;
         height: 18px;
         border-radius: 50%;
-        background: #667eea;
+        background: #4a7ba7;
         cursor: pointer;
         border: none;
         box-shadow: 0 2px 6px rgba(0,0,0,0.2);
     }
 
-    .button-group {
-        display: flex;
-        gap: 10px;
+    .action-buttons {
+        display: none;
+        gap: 15px;
         margin-top: 20px;
     }
 
-    button {
-        padding: 12px 24px;
-        font-size: 16px;
-        border: none;
-        border-radius: 12px;
-        cursor: pointer;
-        font-weight: 600;
-        transition: all 0.3s ease;
-        flex: 1;
+    .action-buttons.active {
+        display: flex;
     }
 
-    button:hover {
+    .btn {
+        padding: 14px 28px;
+        border: none;
+        border-radius: 12px;
+        font-size: 16px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+    }
+
+    .btn:hover {
         transform: translateY(-2px);
         box-shadow: 0 6px 20px rgba(0,0,0,0.2);
     }
 
-    button:active {
-        transform: translateY(0);
-    }
-
-    .upload-btn {
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    .btn-linkedin {
+        background: #0077b5;
         color: white;
     }
 
-    .download-btn {
-        background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-        color: white;
+    .btn-linkedin:hover {
+        background: #006097;
+    }
+
+    .caption-box {
+        background: #f8f9fa;
+        border: 2px solid #e0e0e0;
+        border-radius: 12px;
+        padding: 20px;
+        margin-top: 20px;
         display: none;
     }
 
-    .download-btn.active {
+    .caption-box.active {
         display: block;
     }
 
-    .frame-selector {
-        display: flex;
-        gap: 10px;
-        justify-content: center;
-        margin-top: 15px;
-        flex-wrap: wrap;
+    .caption-box h3 {
+        color: #2d4a6a;
+        font-size: 1.1em;
+        margin-bottom: 10px;
     }
 
-    .frame-option {
-        width: 50px;
-        height: 50px;
-        border-radius: 50%;
-        cursor: pointer;
-        border: 3px solid transparent;
-        transition: all 0.3s ease;
+    .caption-text {
+        background: white;
+        padding: 15px;
+        border-radius: 8px;
+        color: #333;
+        line-height: 1.6;
+        margin-bottom: 10px;
+        font-size: 0.95em;
+        border: 1px solid #ddd;
     }
 
-    .frame-option:hover {
-        transform: scale(1.1);
+    .btn-copy {
+        background: #28a745;
+        color: white;
+        width: 100%;
     }
 
-    .frame-option.selected {
-        border-color: #667eea;
-        box-shadow: 0 0 15px rgba(102, 126, 234, 0.5);
+    .btn-copy:hover {
+        background: #218838;
     }
-
-    .frame-1 { background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); }
-    .frame-2 { background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); }
-    .frame-3 { background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%); }
-    .frame-4 { background: linear-gradient(135deg, #fa709a 0%, #fee140 100%); }
-    .frame-5 { background: linear-gradient(135deg, #30cfd0 0%, #330867 100%); }
 
     .hint {
         text-align: center;
-        color: #999;
+        color: #666;
         font-size: 0.85em;
         margin-top: 10px;
+        font-style: italic;
+    }
+
+    @media (max-width: 1024px) {
+        .main-container {
+            grid-template-columns: 1fr;
+        }
+
+        .preview-section {
+            position: relative;
+            top: 0;
+        }
     }
 </style>
 </head>
@@ -291,62 +437,109 @@
     }
 </script>
 
-<h2>✨ EduHack-4 Photo Frame ✨</h2>
+<div class="header">
+    <h1>EduHack-4 - Attendee Frame</h1>
+    <p>Create your personalized event badge</p>
+    <p class="organizer">Made by Sahaba Club</p>
+</div>
 
-<div class="container">
-    <p class="title">Create Your Perfect Frame</p>
+<div class="main-container">
+    <div class="form-section">
+        <div class="form-group">
+            <label>FULL NAME <span class="required">*</span></label>
+            <input type="text" id="fullName" placeholder="Enter your full name">
+        </div>
 
-    <div class="frame-box" id="frameBox">
-        <div class="frame-inner">
-            <div class="canvas-container">
-                <canvas id="canvas" width="290" height="290"></canvas>
-                <div class="placeholder" id="placeholder">
-                    📸<br>Upload a photo to begin
+        <div class="form-group">
+            <label>STUDENT OR WORKING</label>
+            <input type="text" id="jobTitle" placeholder="e.g., Student, Software Engineer, etc.">
+        </div>
+
+        <div class="form-group">
+            <label>COMPANY OR UNIVERSITY</label>
+            <input type="text" id="company" placeholder="Enter your company or university name">
+        </div>
+
+        <div class="form-group">
+            <label>PROFILE PHOTO <span class="required">*</span></label>
+            <div class="upload-area" onclick="document.getElementById('upload').click()">
+                <p>📸 CLICK TO UPLOAD YOUR PHOTO</p>
+                <small>SUPPORTS JPG, PNG, WEBP (SQUARE FORMAT RECOMMENDED)</small>
+            </div>
+            <input type="file" id="upload" accept="image/*" style="display:none;">
+        </div>
+    </div>
+
+    <div class="preview-section">
+        <div class="frame-preview">
+            <div class="badge-container">
+                <div class="badge-left">
+                    <div class="badge-title">EduHack-4</div>
+                    <div class="badge-event">TECH<br>HACKATHON</div>
+                    <div class="badge-tagline">Innovate • Create • Lead</div>
+                    <div class="badge-date">📅 By Sahaba Club</div>
+                </div>
+                <div class="badge-right">
+                    <div class="photo-circle">
+                        <canvas id="canvas" width="172" height="172"></canvas>
+                        <div class="placeholder-circle" id="placeholder">👤</div>
+                    </div>
+                    <div class="attendee-label">ATTENDEE</div>
                 </div>
             </div>
+            <div class="user-info" id="userInfo">
+                <div class="user-name" id="displayName">Your Name</div>
+                <div class="user-job" id="displayJob">Your Job Title</div>
+                <div class="user-company" id="displayCompany">Your Company</div>
+            </div>
         </div>
-    </div>
 
-    <div class="frame-selector">
-        <div class="frame-option frame-1 selected" onclick="changeFrame(1)"></div>
-        <div class="frame-option frame-2" onclick="changeFrame(2)"></div>
-        <div class="frame-option frame-3" onclick="changeFrame(3)"></div>
-        <div class="frame-option frame-4" onclick="changeFrame(4)"></div>
-        <div class="frame-option frame-5" onclick="changeFrame(5)"></div>
-    </div>
-
-    <div class="controls">
-        <div class="control-group" id="controls">
+        <div class="controls" id="controls">
             <label>🔍 Zoom: <span id="zoomValue">100%</span></label>
             <input type="range" id="zoomSlider" min="50" max="300" value="100">
+            <p class="hint">💡 Drag the photo to position it perfectly</p>
+        </div>
+
+        <div class="action-buttons" id="actionButtons">
+            <button class="btn btn-linkedin" id="linkedinBtn">
+                <span>📱</span> Share on LinkedIn
+            </button>
+        </div>
+
+        <div class="caption-box" id="captionBox">
+            <h3>📝 LinkedIn Caption</h3>
+            <div class="caption-text" id="captionText">
+                🎉 Excited to be part of EduHack-4 organized by Sahaba Club! 
+                
+Ready to innovate, create, and collaborate with amazing minds in this tech hackathon.
+
+#EduHack4 #SahabaClub #TechHackathon #Innovation #Coding #Technology #Learning
+            </div>
+            <button class="btn btn-copy" onclick="copyCaption()">
+                📋 Copy Caption
+            </button>
         </div>
     </div>
-
-    <div class="button-group">
-        <input type="file" id="upload" accept="image/*" style="display:none;">
-        <button class="upload-btn" onclick="document.getElementById('upload').click()">
-            📤 Upload Photo
-        </button>
-    </div>
-
-    <button class="download-btn" id="downloadBtn" onclick="downloadImage()">
-        💾 Download Framed Photo
-    </button>
-
-    <p class="hint" id="hint"></p>
 </div>
 
 <script>
 const uploadInput = document.getElementById("upload");
 const canvas = document.getElementById("canvas");
 const ctx = canvas.getContext("2d");
-const downloadBtn = document.getElementById("downloadBtn");
 const placeholder = document.getElementById("placeholder");
 const zoomSlider = document.getElementById("zoomSlider");
 const zoomValue = document.getElementById("zoomValue");
 const controlsDiv = document.getElementById("controls");
-const hint = document.getElementById("hint");
-const frameBox = document.getElementById("frameBox");
+const actionButtons = document.getElementById("actionButtons");
+const captionBox = document.getElementById("captionBox");
+const linkedinBtn = document.getElementById("linkedinBtn");
+
+const fullNameInput = document.getElementById("fullName");
+const jobTitleInput = document.getElementById("jobTitle");
+const companyInput = document.getElementById("company");
+const displayName = document.getElementById("displayName");
+const displayJob = document.getElementById("displayJob");
+const displayCompany = document.getElementById("displayCompany");
 
 let uploadedImage = null;
 let imageScale = 1;
@@ -356,19 +549,18 @@ let isDragging = false;
 let lastMouseX = 0;
 let lastMouseY = 0;
 
-const frameGradients = {
-    1: 'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)',
-    2: 'linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)',
-    3: 'linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)',
-    4: 'linear-gradient(135deg, #fa709a 0%, #fee140 100%)',
-    5: 'linear-gradient(135deg, #30cfd0 0%, #330867 100%)'
-};
+// Update display names in real-time
+fullNameInput.addEventListener("input", function() {
+    displayName.textContent = this.value || "Your Name";
+});
 
-function changeFrame(frameNum) {
-    frameBox.style.background = frameGradients[frameNum];
-    document.querySelectorAll('.frame-option').forEach(opt => opt.classList.remove('selected'));
-    document.querySelector(`.frame-${frameNum}`).classList.add('selected');
-}
+jobTitleInput.addEventListener("input", function() {
+    displayJob.textContent = this.value || "Student/Working";
+});
+
+companyInput.addEventListener("input", function() {
+    displayCompany.textContent = this.value || "Your Institution";
+});
 
 uploadInput.addEventListener("change", function(e) {
     const file = e.target.files[0];
@@ -377,20 +569,7 @@ uploadInput.addEventListener("change", function(e) {
     const img = new Image();
     img.onload = function() {
         uploadedImage = img;
-        
-        // Calculate initial scale to fit the image properly
-        // For portrait images (tall), fit to width
-        // For landscape images (wide), fit to height
-        const imageAspect = img.width / img.height;
-        
-        if (imageAspect < 1) {
-            // Portrait: fit width
-            imageScale = 1.0;
-        } else {
-            // Landscape or square: fit height
-            imageScale = 1.0;
-        }
-        
+        imageScale = 1;
         imageX = 0;
         imageY = 0;
         zoomSlider.value = 100;
@@ -398,8 +577,14 @@ uploadInput.addEventListener("change", function(e) {
         drawImage();
         placeholder.style.display = 'none';
         controlsDiv.classList.add('active');
-        downloadBtn.classList.add('active');
-        hint.textContent = '💡 Drag the photo to position it, use zoom slider to adjust size';
+        
+        // Wait a moment, then generate and download
+        setTimeout(() => {
+            downloadImage();
+            // Show share buttons and caption after download
+            actionButtons.classList.add('active');
+            captionBox.classList.add('active');
+        }, 500);
     };
     img.src = URL.createObjectURL(file);
 });
@@ -441,7 +626,7 @@ canvas.addEventListener('mouseleave', function() {
     isDragging = false;
 });
 
-// Touch support for mobile
+// Touch support
 canvas.addEventListener('touchstart', function(e) {
     if (!uploadedImage) return;
     e.preventDefault();
@@ -481,131 +666,145 @@ function drawImage() {
     if (!uploadedImage) return;
 
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-    
     ctx.save();
     
-    // Create circular clipping mask
     ctx.beginPath();
-    ctx.arc(145, 145, 145, 0, Math.PI * 2);
+    ctx.arc(86, 86, 86, 0, Math.PI * 2);
     ctx.closePath();
     ctx.clip();
 
-    // Calculate image dimensions and positioning
     const imgWidth = uploadedImage.width;
     const imgHeight = uploadedImage.height;
     const canvasSize = canvas.width;
     
-    // Calculate the size to cover the entire circular area
     let drawWidth, drawHeight;
     
     if (imgWidth > imgHeight) {
-        // Landscape image
         drawHeight = canvasSize * imageScale;
         drawWidth = (imgWidth / imgHeight) * drawHeight;
     } else {
-        // Portrait or square image
         drawWidth = canvasSize * imageScale;
         drawHeight = (imgHeight / imgWidth) * drawWidth;
     }
     
-    // Center the image and apply user positioning
     const offsetX = (canvasSize - drawWidth) / 2 + imageX;
     const offsetY = (canvasSize - drawHeight) / 2 + imageY;
 
-    // Draw the full image (no cropping)
-    ctx.drawImage(
-        uploadedImage,
-        0, 0, imgWidth, imgHeight,  // Source: entire image
-        offsetX, offsetY, drawWidth, drawHeight  // Destination: scaled and positioned
-    );
-
+    ctx.drawImage(uploadedImage, 0, 0, imgWidth, imgHeight, offsetX, offsetY, drawWidth, drawHeight);
     ctx.restore();
 }
 
 function downloadImage() {
     if (!uploadedImage) return;
 
-    // Create a temporary canvas for the final image with frame
     const finalCanvas = document.createElement('canvas');
-    finalCanvas.width = 600;
-    finalCanvas.height = 600;
+    finalCanvas.width = 1920;
+    finalCanvas.height = 1080;
     const finalCtx = finalCanvas.getContext('2d');
 
-    // Draw white background
-    finalCtx.fillStyle = 'white';
-    finalCtx.fillRect(0, 0, 600, 600);
-
-    // Draw frame gradient
-    const gradient = finalCtx.createLinearGradient(0, 0, 600, 600);
-    const currentFrame = document.querySelector('.frame-option.selected');
-    const frameNum = currentFrame.className.match(/frame-(\d)/)[1];
-    
-    const gradients = {
-        1: ['#f093fb', '#f5576c'],
-        2: ['#4facfe', '#00f2fe'],
-        3: ['#43e97b', '#38f9d7'],
-        4: ['#fa709a', '#fee140'],
-        5: ['#30cfd0', '#330867']
-    };
-    
-    gradient.addColorStop(0, gradients[frameNum][0]);
-    gradient.addColorStop(1, gradients[frameNum][1]);
-    
+    // Background
+    const gradient = finalCtx.createLinearGradient(0, 0, 1920, 1080);
+    gradient.addColorStop(0, '#1a1a2e');
+    gradient.addColorStop(1, '#16213e');
     finalCtx.fillStyle = gradient;
-    finalCtx.beginPath();
-    finalCtx.arc(300, 300, 290, 0, Math.PI * 2);
-    finalCtx.fill();
+    finalCtx.fillRect(0, 0, 1920, 1080);
 
-    // Draw white inner circle
+    // Left section text
+    finalCtx.fillStyle = '#4a9eff';
+    finalCtx.font = 'bold 42px Arial';
+    finalCtx.fillText('EduHack-4', 80, 120);
+
+    finalCtx.fillStyle = '#4ac3ff';
+    finalCtx.font = 'bold 90px Arial';
+    finalCtx.fillText('TECH', 80, 240);
+    finalCtx.fillText('HACKATHON', 80, 340);
+
+    finalCtx.fillStyle = '#bbb';
+    finalCtx.font = '28px Arial';
+    finalCtx.fillText('Innovate • Create • Lead', 80, 390);
+
+    finalCtx.fillStyle = 'rgba(74, 195, 255, 0.3)';
+    finalCtx.fillRect(80, 440, 280, 50);
     finalCtx.fillStyle = 'white';
-    finalCtx.beginPath();
-    finalCtx.arc(300, 300, 275, 0, Math.PI * 2);
-    finalCtx.fill();
+    finalCtx.font = '26px Arial';
+    finalCtx.fillText('By Sahaba Club', 100, 472);
 
-    // Draw the photo
+    // Photo circle
     finalCtx.save();
     finalCtx.beginPath();
-    finalCtx.arc(300, 300, 265, 0, Math.PI * 2);
+    finalCtx.arc(1520, 360, 240, 0, Math.PI * 2);
     finalCtx.closePath();
+    finalCtx.strokeStyle = '#4a9eff';
+    finalCtx.lineWidth = 12;
+    finalCtx.stroke();
     finalCtx.clip();
 
-    // Calculate scaling from preview canvas to final canvas
-    const scale = 600 / 290;
-    
+    const scale = 480 / 172;
     const imgWidth = uploadedImage.width;
     const imgHeight = uploadedImage.height;
-    const finalCanvasSize = 600;
     
-    // Calculate the size to match the preview
     let drawWidth, drawHeight;
-    
     if (imgWidth > imgHeight) {
-        // Landscape image
-        drawHeight = (290 * imageScale) * scale;
+        drawHeight = 172 * imageScale * scale;
         drawWidth = (imgWidth / imgHeight) * drawHeight;
     } else {
-        // Portrait or square image
-        drawWidth = (290 * imageScale) * scale;
+        drawWidth = 172 * imageScale * scale;
         drawHeight = (imgHeight / imgWidth) * drawWidth;
     }
     
-    // Apply the same positioning as in preview
-    const offsetX = (finalCanvasSize - drawWidth) / 2 + (imageX * scale);
-    const offsetY = (finalCanvasSize - drawHeight) / 2 + (imageY * scale);
+    const offsetX = 1520 - drawWidth/2 + (imageX * scale);
+    const offsetY = 360 - drawHeight/2 + (imageY * scale);
 
-    finalCtx.drawImage(
-        uploadedImage,
-        0, 0, imgWidth, imgHeight,
-        offsetX, offsetY, drawWidth, drawHeight
-    );
-
+    finalCtx.drawImage(uploadedImage, 0, 0, imgWidth, imgHeight, offsetX, offsetY, drawWidth, drawHeight);
     finalCtx.restore();
+
+    // ATTENDEE label
+    finalCtx.save();
+    finalCtx.translate(1770, 540);
+    finalCtx.rotate(Math.PI / 2);
+    finalCtx.fillStyle = '#4a9eff';
+    finalCtx.font = 'bold 38px Arial';
+    finalCtx.letterSpacing = '8px';
+    finalCtx.fillText('ATTENDEE', 0, 0);
+    finalCtx.restore();
+
+    // User info box
+    finalCtx.fillStyle = 'rgba(255,255,255,0.1)';
+    finalCtx.fillRect(80, 880, 1760, 140);
+
+    finalCtx.fillStyle = 'white';
+    finalCtx.font = 'bold 48px Arial';
+    finalCtx.fillText(fullNameInput.value || 'Your Name', 120, 945);
+
+    finalCtx.fillStyle = '#4ac3ff';
+    finalCtx.font = '32px Arial';
+    finalCtx.fillText(jobTitleInput.value || 'Student/Working', 120, 990);
+
+    finalCtx.fillStyle = '#aaa';
+    finalCtx.font = '28px Arial';
+    finalCtx.fillText(companyInput.value || 'Your Institution', 120, 1025);
 
     // Download
     const link = document.createElement("a");
-    link.download = "eduhack4-framed-photo.png";
+    link.download = "eduhack4-attendee-badge.png";
     link.href = finalCanvas.toDataURL("image/png");
     link.click();
+}
+
+linkedinBtn.addEventListener('click', function() {
+    window.open('https://www.linkedin.com/feed/?shareActive=true', '_blank');
+});
+
+function copyCaption() {
+    const caption = document.getElementById('captionText').textContent;
+    navigator.clipboard.writeText(caption).then(function() {
+        const btn = event.target;
+        const originalText = btn.innerHTML;
+        btn.innerHTML = '✅ Copied!';
+        setTimeout(() => {
+            btn.innerHTML = originalText;
+        }, 2000);
+    });
 }
 </script>
 
