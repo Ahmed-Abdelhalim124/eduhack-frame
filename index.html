@@ -792,7 +792,25 @@ function downloadImage() {
 }
 
 linkedinBtn.addEventListener('click', function() {
-    window.open('https://www.linkedin.com/feed/?shareActive=true', '_blank');
+    // Detect if mobile device
+    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    
+    if (isMobile) {
+        // For mobile, try the LinkedIn app deep link first, fallback to web
+        const linkedinAppUrl = 'linkedin://shareArticle?mini=true';
+        const linkedinWebUrl = 'https://www.linkedin.com/sharing/share-offsite/';
+        
+        // Try to open LinkedIn app
+        window.location.href = linkedinAppUrl;
+        
+        // Fallback to web after a short delay if app doesn't open
+        setTimeout(function() {
+            window.open(linkedinWebUrl, '_blank');
+        }, 500);
+    } else {
+        // Desktop - use the standard share URL
+        window.open('https://www.linkedin.com/feed/?shareActive=true', '_blank');
+    }
 });
 
 function copyCaption() {
