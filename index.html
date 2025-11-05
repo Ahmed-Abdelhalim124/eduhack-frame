@@ -61,8 +61,8 @@
     }
 
     .header-logo {
-        width: 60px;
-        height: 60px;
+        width: 150px;
+        height: 120px;
         object-fit: contain;
         flex-shrink: 0;
     }
@@ -88,7 +88,7 @@
     }
 
     .header-spacer {
-        width: 60px;
+        width: 80px;
         flex-shrink: 0;
     }
 
@@ -432,12 +432,12 @@
         }
 
         .header-logo {
-            width: 80px;
-            height: 80px;
+            width: 100px;
+            height: 100px;
         }
 
         .header-spacer {
-            width: 80px;
+            width: 100px;
         }
 
         .header {
@@ -483,12 +483,12 @@
         }
 
         .header-logo {
-            width: 50px;
-            height: 50px;
+            width: 90px;
+            height: 90px;
         }
 
         .header-spacer {
-            width: 50px;
+            width: 70px;
         }
 
         .form-section, .preview-section {
@@ -1028,30 +1028,27 @@ linkedinBtn.addEventListener("click", function(e) {
         return;
     }
 
-    const userAgent = navigator.userAgent || navigator.vendor || window.opera;
-    const isAndroid = /android/i.test(userAgent);
-    const isIOS = /iPad|iPhone|iPod/.test(userAgent) && !window.MSStream;
+    // Better mobile detection
+    const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
     
-    let linkedinUrl;
-    
-    if (isAndroid || isIOS) {
-        linkedinUrl = 'linkedin://shareArticle';
-    } else {
-        linkedinUrl = 'https://www.linkedin.com/feed/?shareActive=true';
-    }
-    
-    const message = encodeURIComponent('Excited to share my EduHack-AI-4 badge! 🎉 #EduHackAI4 #SahabaClub');
-    
-    if (isAndroid || isIOS) {
-        window.location.href = linkedinUrl;
+    if (isMobile) {
+        // For mobile: Try to open LinkedIn app first with a simple share intent
+        const text = encodeURIComponent('Excited to share my EduHack-AI-4 badge! 🎉 #EduHackAI4 #SahabaClub');
+        
+        // Try deep link first
+        const deepLink = `linkedin://sharing/share-offsite/?url=https://www.linkedin.com`;
+        window.location.href = deepLink;
+        
+        // Fallback to web version after a short delay
         setTimeout(() => {
-            window.open('https://www.linkedin.com/feed/?shareActive=true&text=' + message, '_blank');
-        }, 1000);
+            window.open(`https://www.linkedin.com/sharing/share-offsite/?url=https://www.linkedin.com&summary=${text}`, '_blank');
+        }, 500);
     } else {
-        window.open(linkedinUrl, '_blank');
+        // For desktop: Open LinkedIn share dialog
+        window.open('https://www.linkedin.com/feed/?shareActive=true', '_blank');
     }
     
-    alert('📸 Please download your badge first, then share it on LinkedIn!');
+    alert('📸 Please download your badge first, then upload it when sharing on LinkedIn!');
 });
 
 downloadBtn.addEventListener("click", function() {
@@ -1106,46 +1103,46 @@ downloadBtn.addEventListener("click", function() {
         finalCtx.shadowBlur = 6;
         finalCtx.shadowOffsetX = 2;
         finalCtx.shadowOffsetY = 2;
-        finalCtx.textAlign = 'right';
+        finalCtx.textAlign = 'left';
         
         const nameTopPercent = parseFloat(nameTopInput.value);
         const nameRightPercent = parseFloat(nameRightInput.value);
         const nameWidthPercent = parseFloat(nameWidthInput.value);
         const nameFont = parseInt(nameFontSizeInput.value);
         
-        const nameRight = 1280 * (nameRightPercent / 100);
+        const nameX = 1280 - (1280 * (nameRightPercent / 100)) - (1280 * (nameWidthPercent / 100));
         const nameY = 760 * (nameTopPercent / 100);
         const nameMaxWidth = 1280 * (nameWidthPercent / 100);
         
         finalCtx.font = `bold ${nameFont}px Arial`;
         const nameText = fullNameInput.value.trim() || 'Your Name';
-        wrapTextRight(finalCtx, nameText, 1280 - nameRight, nameY, nameMaxWidth, nameFont * 1.2, 2);
+        wrapTextLeft(finalCtx, nameText, nameX, nameY, nameMaxWidth, nameFont * 1.2, 2);
 
         const jobTopPercent = parseFloat(jobTopInput.value);
         const jobRightPercent = parseFloat(jobRightInput.value);
         const jobWidthPercent = parseFloat(jobWidthInput.value);
         const jobFont = parseInt(jobFontSizeInput.value);
         
-        const jobRight = 1280 * (jobRightPercent / 100);
+        const jobX = 1280 - (1280 * (jobRightPercent / 100)) - (1280 * (jobWidthPercent / 100));
         const jobY = 760 * (jobTopPercent / 100);
         const jobMaxWidth = 1280 * (jobWidthPercent / 100);
         
         finalCtx.font = `bold ${jobFont}px Arial`;
         const jobText = jobTitleInput.value.trim() || 'Student/Working';
-        wrapTextRight(finalCtx, jobText, 1280 - jobRight, jobY, jobMaxWidth, jobFont * 1.2, 2);
+        wrapTextLeft(finalCtx, jobText, jobX, jobY, jobMaxWidth, jobFont * 1.2, 2);
 
         const companyTopPercent = parseFloat(companyTopInput.value);
         const companyRightPercent = parseFloat(companyRightInput.value);
         const companyWidthPercent = parseFloat(companyWidthInput.value);
         const companyFont = parseInt(companyFontSizeInput.value);
         
-        const companyRight = 1280 * (companyRightPercent / 100);
+        const companyX = 1280 - (1280 * (companyRightPercent / 100)) - (1280 * (companyWidthPercent / 100));
         const companyY = 760 * (companyTopPercent / 100);
         const companyMaxWidth = 1280 * (companyWidthPercent / 100);
         
         finalCtx.font = `bold ${companyFont}px Arial`;
         const companyText = companyInput.value.trim() || 'Your Institution';
-        wrapTextRight(finalCtx, companyText, 1280 - companyRight, companyY, companyMaxWidth, companyFont * 1.2, 2);
+        wrapTextLeft(finalCtx, companyText, companyX, companyY, companyMaxWidth, companyFont * 1.2, 2);
 
         downloadedImageUrl = finalCanvas.toDataURL("image/png");
         
@@ -1162,7 +1159,7 @@ downloadBtn.addEventListener("click", function() {
     frameImg.src = 'frame.jpg';
 });
 
-function wrapTextRight(ctx, text, x, y, maxWidth, lineHeight, maxLines) {
+function wrapTextLeft(ctx, text, x, y, maxWidth, lineHeight, maxLines) {
     const words = text.split(' ');
     let lines = [];
     let currentLine = '';
