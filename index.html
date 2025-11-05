@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Experts Live Emirates - Attendee Frame</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>EduHack-AI-4 - Attendee Frame</title>
 <style>
     * {
         margin: 0;
@@ -12,270 +12,293 @@
     }
 
     body {
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        background: linear-gradient(135deg, #1e3a5f 0%, #2d5a7b 50%, #1a4d6d 100%);
+        font-family: 'Arial', sans-serif;
+        background: #0a0e27;
         min-height: 100vh;
-        padding: 0;
-        position: relative;
+        padding: 20px;
+        touch-action: pan-y;
         overflow-x: hidden;
     }
 
-    /* Animated background particles */
+    .bg-pattern {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(135deg, #0a0e27 0%, #1a1d3a 50%, #0f1229 100%);
+        z-index: 0;
+    }
+
     .particle {
         position: fixed;
-        background: rgba(100, 150, 255, 0.1);
+        background: radial-gradient(circle, rgba(138, 43, 226, 0.2) 0%, transparent 70%);
         border-radius: 50%;
-        animation: float 15s infinite;
+        animation: float 20s infinite;
         pointer-events: none;
     }
 
     @keyframes float {
-        0%, 100% { transform: translate(0, 0) rotate(0deg); }
-        33% { transform: translate(30px, -30px) rotate(120deg); }
-        66% { transform: translate(-20px, 20px) rotate(240deg); }
+        0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.3; }
+        33% { transform: translate(50px, -50px) scale(1.2); opacity: 0.5; }
+        66% { transform: translate(-30px, 30px) scale(0.8); opacity: 0.3; }
     }
 
     .header {
-        background: linear-gradient(135deg, #2d4a6a 0%, #4a7ba7 100%);
-        padding: 50px 20px;
+        background: #161b2b;
+        backdrop-filter: blur(10px);
+        padding: 15px 20px;
+        box-shadow: 0 4px 30px rgba(138, 43, 226, 0.2);
+        position: relative;
+        z-index: 10;
+        border-bottom: 2px solid rgba(138, 43, 226, 0.3);
+        border-radius: 15px;
+        margin-bottom: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 15px;
+    }
+
+    .header-logo {
+        width: 60px;
+        height: 60px;
+        object-fit: contain;
+        flex-shrink: 0;
+    }
+
+    .header-content {
         text-align: center;
-        box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+        flex: 1;
     }
 
     .header h1 {
-        color: white;
-        font-size: 2.5em;
-        margin-bottom: 10px;
-        text-shadow: 2px 2px 10px rgba(0,0,0,0.3);
+        font-size: clamp(1.2em, 4vw, 2.2em);
+        background: linear-gradient(135deg, #00d9ff, #ec4899);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        margin: 0;
     }
 
     .header p {
         color: rgba(255,255,255,0.9);
-        font-size: 1.2em;
+        margin-top: 5px;
+        font-size: clamp(0.8em, 2.5vw, 1.1em);
     }
 
-    .header .organizer {
-        color: rgba(255,255,255,0.8);
-        font-size: 1em;
-        margin-top: 10px;
-        font-style: italic;
+    .header-spacer {
+        width: 60px;
+        flex-shrink: 0;
     }
 
     .main-container {
-        max-width: 1400px;
-        margin: 40px auto;
-        padding: 0 20px;
+        max-width: 1600px;
+        margin: 0 auto;
         display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 40px;
-        align-items: start;
+        grid-template-columns: 1fr;
+        gap: 30px;
+        position: relative;
+        z-index: 10;
     }
 
     .form-section {
-        background: white;
-        padding: 40px;
-        border-radius: 20px;
-        box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+        background: rgba(26, 29, 58, 0.8);
+        backdrop-filter: blur(20px);
+        padding: 25px;
+        border-radius: 24px;
+        box-shadow: 0 10px 40px rgba(138, 43, 226, 0.3);
+        border: 1px solid rgba(138, 43, 226, 0.3);
     }
 
     .preview-section {
-        background: rgba(255, 255, 255, 0.95);
-        padding: 40px;
-        border-radius: 20px;
-        box-shadow: 0 10px 40px rgba(0,0,0,0.2);
-        position: sticky;
-        top: 20px;
+        background: rgba(26, 29, 58, 0.8);
+        backdrop-filter: blur(20px);
+        padding: 25px;
+        border-radius: 24px;
+        box-shadow: 0 10px 40px rgba(236, 72, 153, 0.3);
+        border: 1px solid rgba(236, 72, 153, 0.3);
     }
 
     .form-group {
-        margin-bottom: 25px;
+        margin-bottom: 20px;
     }
 
     .form-group label {
         display: block;
-        color: #2d4a6a;
+        color: #00d9ff;
         font-weight: 600;
         margin-bottom: 8px;
-        font-size: 0.95em;
+        font-size: clamp(0.8em, 2.5vw, 0.9em);
         text-transform: uppercase;
         letter-spacing: 0.5px;
     }
 
-    .form-group label .required {
-        color: #e74c3c;
-    }
-
-    .form-group input {
+    .form-group input, .form-group select {
         width: 100%;
-        padding: 14px;
-        border: 2px solid #e0e0e0;
-        border-radius: 10px;
+        padding: 12px;
+        border: 2px solid rgba(138, 43, 226, 0.3);
+        border-radius: 12px;
         font-size: 16px;
         transition: all 0.3s ease;
-        background: #f8f9fa;
+        background: rgba(10, 14, 39, 0.6);
+        color: white;
     }
 
-    .form-group input:focus {
+    .form-group input::placeholder {
+        color: rgba(255, 255, 255, 0.4);
+    }
+
+    .form-group input:focus, .form-group select:focus {
         outline: none;
-        border-color: #4a7ba7;
-        background: white;
-        box-shadow: 0 0 0 3px rgba(74, 123, 167, 0.1);
+        border-color: #8a2be2;
+        background: rgba(10, 14, 39, 0.9);
+        box-shadow: 0 0 20px rgba(138, 43, 226, 0.3);
+    }
+
+    .form-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
     }
 
     .upload-area {
-        border: 3px dashed #4a7ba7;
+        border: 3px dashed #8a2be2;
         border-radius: 15px;
-        padding: 40px;
+        padding: 25px 15px;
         text-align: center;
-        background: #f0f8ff;
+        background: rgba(138, 43, 226, 0.1);
         cursor: pointer;
         transition: all 0.3s ease;
     }
 
     .upload-area:hover {
-        background: #e6f2ff;
-        border-color: #2d5a7b;
+        background: rgba(138, 43, 226, 0.2);
+        border-color: #ec4899;
+        transform: translateY(-2px);
     }
 
     .upload-area p {
-        color: #2d4a6a;
+        color: #00d9ff;
         font-weight: 600;
         margin-bottom: 5px;
+        font-size: clamp(0.85em, 2.5vw, 1.1em);
     }
 
-    .upload-area small {
-        color: #666;
-        font-size: 0.9em;
+    .section-title {
+        color: #ec4899;
+        font-size: clamp(1em, 3vw, 1.2em);
+        font-weight: bold;
+        margin: 25px 0 15px 0;
+        padding-bottom: 10px;
+        border-bottom: 2px solid rgba(236, 72, 153, 0.3);
     }
 
     .frame-preview {
         width: 100%;
-        max-width: 500px;
+        max-width: 100%;
         margin: 0 auto 20px;
-        background: #1a1a2e;
-        border-radius: 20px;
-        padding: 20px;
-        box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+        position: relative;
     }
 
     .badge-container {
         position: relative;
-        aspect-ratio: 16/9;
-        background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
-        border-radius: 15px;
-        padding: 25px;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
+        width: 100%;
+        padding-bottom: 59.38%;
+        background: #1a1a1a;
+        border-radius: 10px;
+        overflow: hidden;
     }
 
-    .badge-left {
-        flex: 1;
-        color: white;
+    .frame-image {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        z-index: 1;
+        pointer-events: none;
     }
 
-    .badge-title {
-        color: #4a9eff;
-        font-size: 1.1em;
-        font-weight: bold;
-        margin-bottom: 10px;
-    }
-
-    .badge-event {
-        font-size: 2em;
-        font-weight: bold;
-        color: #4ac3ff;
-        line-height: 1.2;
-        margin-bottom: 8px;
-    }
-
-    .badge-tagline {
-        font-size: 0.85em;
-        color: #bbb;
-        margin-bottom: 15px;
-    }
-
-    .badge-date {
-        background: rgba(74, 195, 255, 0.2);
-        padding: 8px 15px;
-        border-radius: 8px;
-        display: inline-block;
-        font-size: 0.9em;
-        margin-top: 10px;
-    }
-
-    .badge-right {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 15px;
+    .badge-content {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 5;
     }
 
     .photo-circle {
-        width: 180px;
-        height: 180px;
+        position: absolute;
+        width: 36%;
+        height: 60.5%;
+        top: 19.5%;
+        left: 50%;
+        transform: translateX(-50%);
         border-radius: 50%;
-        background: white;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 10;
+    }
+
+    .photo-inner {
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        background: #1a1a1a;
         display: flex;
         align-items: center;
         justify-content: center;
         overflow: hidden;
-        border: 4px solid #4a9eff;
-        position: relative;
     }
 
-    canvas {
+    .photo-canvas {
         border-radius: 50%;
         cursor: grab;
+        width: 100%;
+        height: 100%;
+        touch-action: none;
     }
 
-    canvas:active {
+    .photo-canvas:active {
         cursor: grabbing;
     }
 
-    .placeholder-circle {
-        color: #ccc;
-        font-size: 3em;
+    .placeholder {
+        color: #555;
+        font-size: clamp(2em, 6vw, 3em);
+        pointer-events: none;
     }
 
-    .attendee-label {
-        color: #4a9eff;
-        font-size: 1.2em;
-        font-weight: bold;
-        writing-mode: vertical-rl;
-        text-orientation: mixed;
-        letter-spacing: 3px;
-    }
-
-    .user-info {
-        background: rgba(255,255,255,0.1);
-        padding: 15px;
-        border-radius: 10px;
-        margin-top: 15px;
-        text-align: center;
-        min-height: 80px;
-    }
-
-    .user-name {
-        font-size: 1.3em;
-        font-weight: bold;
+    .user-info-item {
+        position: absolute;
+        z-index: 15;
+        cursor: move;
+        background: rgba(138, 43, 226, 0.1);
+        border: 2px dashed rgba(138, 43, 226, 0.5);
+        border-radius: 8px;
+        padding: 8px;
         color: white;
-        margin-bottom: 5px;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.9);
+        word-wrap: break-word;
+        line-height: 1.2;
+        font-weight: bold;
+        font-family: Arial, sans-serif;
+        text-align: left;
     }
 
-    .user-job {
-        font-size: 0.95em;
-        color: #4ac3ff;
-        margin-bottom: 3px;
-    }
-
-    .user-company {
-        font-size: 0.9em;
-        color: #aaa;
+    .user-info-item:hover {
+        background: rgba(138, 43, 226, 0.2);
+        border-color: #8a2be2;
+        box-shadow: 0 0 20px rgba(138, 43, 226, 0.5);
     }
 
     .controls {
-        margin-top: 15px;
+        margin-top: 20px;
         display: none;
     }
 
@@ -285,17 +308,17 @@
 
     .controls label {
         display: block;
-        color: #555;
+        color: #00d9ff;
         font-weight: 600;
         margin-bottom: 8px;
-        font-size: 0.9em;
+        font-size: clamp(0.85em, 2.5vw, 1em);
     }
 
     input[type="range"] {
         width: 100%;
         height: 6px;
         border-radius: 3px;
-        background: #ddd;
+        background: rgba(138, 43, 226, 0.3);
         outline: none;
         -webkit-appearance: none;
     }
@@ -305,24 +328,25 @@
         width: 18px;
         height: 18px;
         border-radius: 50%;
-        background: #4a7ba7;
+        background: linear-gradient(135deg, #8a2be2, #ec4899);
         cursor: pointer;
-        box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+        box-shadow: 0 0 10px rgba(138, 43, 226, 0.5);
     }
 
     input[type="range"]::-moz-range-thumb {
         width: 18px;
         height: 18px;
         border-radius: 50%;
-        background: #4a7ba7;
+        background: linear-gradient(135deg, #8a2be2, #ec4899);
         cursor: pointer;
+        box-shadow: 0 0 10px rgba(138, 43, 226, 0.5);
         border: none;
-        box-shadow: 0 2px 6px rgba(0,0,0,0.2);
     }
 
     .action-buttons {
         display: none;
-        gap: 15px;
+        flex-direction: column;
+        gap: 12px;
         margin-top: 20px;
     }
 
@@ -331,192 +355,333 @@
     }
 
     .btn {
-        padding: 14px 28px;
+        padding: 14px 24px;
         border: none;
         border-radius: 12px;
-        font-size: 16px;
+        font-size: clamp(13px, 2.5vw, 16px);
         font-weight: 600;
         cursor: pointer;
         transition: all 0.3s ease;
-        flex: 1;
+        width: 100%;
         display: flex;
         align-items: center;
         justify-content: center;
-        gap: 8px;
+        gap: 10px;
+        text-decoration: none;
     }
 
     .btn:hover {
         transform: translateY(-2px);
-        box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+        box-shadow: 0 10px 30px rgba(138, 43, 226, 0.4);
+    }
+
+    .btn-download {
+        background: linear-gradient(135deg, #8a2be2, #ec4899);
+        color: white;
     }
 
     .btn-linkedin {
-        background: #0077b5;
+        background: linear-gradient(135deg, #0077b5, #00a0dc);
         color: white;
-    }
-
-    .btn-linkedin:hover {
-        background: #006097;
-    }
-
-    .caption-box {
-        background: #f8f9fa;
-        border: 2px solid #e0e0e0;
-        border-radius: 12px;
-        padding: 20px;
-        margin-top: 20px;
-        display: none;
-    }
-
-    .caption-box.active {
-        display: block;
-    }
-
-    .caption-box h3 {
-        color: #2d4a6a;
-        font-size: 1.1em;
-        margin-bottom: 10px;
-    }
-
-    .caption-text {
-        background: white;
-        padding: 15px;
-        border-radius: 8px;
-        color: #333;
-        line-height: 1.6;
-        margin-bottom: 10px;
-        font-size: 0.95em;
-        border: 1px solid #ddd;
     }
 
     .btn-copy {
-        background: #28a745;
+        background: linear-gradient(135deg, #ec4899, #8a2be2);
         color: white;
-        width: 100%;
-    }
-
-    .btn-copy:hover {
-        background: #218838;
     }
 
     .hint {
         text-align: center;
-        color: #666;
-        font-size: 0.85em;
+        color: rgba(255, 255, 255, 0.6);
+        font-size: clamp(0.7em, 2vw, 0.85em);
         margin-top: 10px;
         font-style: italic;
     }
 
-    @media (max-width: 1024px) {
+    .dimensions-output {
+        background: rgba(0, 217, 255, 0.1);
+        border: 2px solid rgba(0, 217, 255, 0.3);
+        border-radius: 12px;
+        padding: 15px;
+        margin-top: 20px;
+        color: #00d9ff;
+        font-family: 'Courier New', monospace;
+        font-size: clamp(0.75em, 2vw, 0.9em);
+        line-height: 1.8;
+    }
+
+    .dimensions-output strong {
+        color: #ec4899;
+    }
+
+    @media (min-width: 1024px) {
         .main-container {
-            grid-template-columns: 1fr;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 40px;
         }
 
         .preview-section {
-            position: relative;
-            top: 0;
+            position: sticky;
+            top: 20px;
+            max-height: calc(100vh - 40px);
+            overflow-y: auto;
+        }
+
+        .action-buttons {
+            flex-direction: row;
+        }
+
+        .header-logo {
+            width: 80px;
+            height: 80px;
+        }
+
+        .header-spacer {
+            width: 80px;
+        }
+
+        .header {
+            padding: 20px;
+        }
+    }
+
+    @media (max-width: 1023px) {
+        body {
+            padding: 10px;
+        }
+
+        .header {
+            padding: 12px 15px;
+            margin-bottom: 20px;
+        }
+
+        .form-section, .preview-section {
+            padding: 20px;
+        }
+
+        .form-row {
+            grid-template-columns: 1fr;
+        }
+
+        .section-title {
+            margin: 20px 0 12px 0;
+        }
+
+        .dimensions-output {
+            padding: 12px;
+        }
+    }
+
+    @media (max-width: 480px) {
+        body {
+            padding: 8px;
+        }
+
+        .header {
+            padding: 10px;
+            gap: 10px;
+        }
+
+        .header-logo {
+            width: 50px;
+            height: 50px;
+        }
+
+        .header-spacer {
+            width: 50px;
+        }
+
+        .form-section, .preview-section {
+            padding: 15px;
+            border-radius: 18px;
+        }
+
+        .upload-area {
+            padding: 20px 10px;
+        }
+
+        .user-info-item {
+            padding: 6px;
         }
     }
 </style>
 </head>
 <body>
 
-<!-- Animated background particles -->
+<div class="bg-pattern"></div>
+
 <script>
-    for(let i = 0; i < 20; i++) {
+    for(let i = 0; i < 15; i++) {
         const particle = document.createElement('div');
         particle.className = 'particle';
-        const size = Math.random() * 80 + 30;
+        const size = Math.random() * 150 + 50;
         particle.style.width = size + 'px';
         particle.style.height = size + 'px';
         particle.style.left = Math.random() * 100 + '%';
         particle.style.top = Math.random() * 100 + '%';
-        particle.style.animationDelay = Math.random() * 15 + 's';
-        particle.style.animationDuration = (Math.random() * 10 + 10) + 's';
+        particle.style.animationDelay = Math.random() * 20 + 's';
+        particle.style.animationDuration = (Math.random() * 15 + 15) + 's';
         document.body.appendChild(particle);
     }
 </script>
 
 <div class="header">
-    <h1>EduHack-4 - Attendee Frame</h1>
-    <p>Create your personalized event badge</p>
-    <p class="organizer">Made by Sahaba Club</p>
+    <img src="logo.png" alt="Sahaba Club Logo" class="header-logo">
+    <div class="header-content">
+        <h1>EduHack-AI-4 Attendee Frame Generator</h1>
+        <p>Made by Sahaba Club</p>
+    </div>
+    <div class="header-spacer"></div>
 </div>
 
 <div class="main-container">
     <div class="form-section">
+        <div class="section-title">📝 User Information</div>
+        
         <div class="form-group">
-            <label>FULL NAME <span class="required">*</span></label>
+            <label>FULL NAME</label>
             <input type="text" id="fullName" placeholder="Enter your full name">
         </div>
 
         <div class="form-group">
             <label>STUDENT OR WORKING</label>
-            <input type="text" id="jobTitle" placeholder="e.g., Student, Software Engineer, etc.">
+            <input type="text" id="jobTitle" placeholder="e.g., Student, Software Engineer">
         </div>
 
         <div class="form-group">
             <label>COMPANY OR UNIVERSITY</label>
-            <input type="text" id="company" placeholder="Enter your company or university name">
+            <input type="text" id="company" placeholder="Enter your institution">
         </div>
 
         <div class="form-group">
-            <label>PROFILE PHOTO <span class="required">*</span></label>
+            <label>PROFILE PHOTO</label>
             <div class="upload-area" onclick="document.getElementById('upload').click()">
                 <p>📸 CLICK TO UPLOAD YOUR PHOTO</p>
-                <small>SUPPORTS JPG, PNG, WEBP (SQUARE FORMAT RECOMMENDED)</small>
+                <small style="color: rgba(255,255,255,0.6); font-size: clamp(0.7em, 2vw, 0.9em);">Square format recommended</small>
             </div>
             <input type="file" id="upload" accept="image/*" style="display:none;">
         </div>
+
+        <div class="section-title">🎨 Name Positioning & Styling</div>
+
+        <div class="form-row">
+            <div class="form-group">
+                <label>Top Position (%)</label>
+                <input type="number" id="nameTop" value="31" min="0" max="100" step="0.5">
+            </div>
+            <div class="form-group">
+                <label>Right Position (%)</label>
+                <input type="number" id="nameRight" value="7" min="0" max="100" step="0.5">
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group">
+                <label>Width (%)</label>
+                <input type="number" id="nameWidth" value="24" min="10" max="50" step="0.5">
+            </div>
+            <div class="form-group">
+                <label>Font Size (px)</label>
+                <input type="number" id="nameFontSize" value="28" min="10" max="60" step="1">
+            </div>
+        </div>
+
+        <div class="section-title">💼 Job Title Positioning & Styling</div>
+
+        <div class="form-row">
+            <div class="form-group">
+                <label>Top Position (%)</label>
+                <input type="number" id="jobTop" value="37" min="0" max="100" step="0.5">
+            </div>
+            <div class="form-group">
+                <label>Right Position (%)</label>
+                <input type="number" id="jobRight" value="7" min="0" max="100" step="0.5">
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group">
+                <label>Width (%)</label>
+                <input type="number" id="jobWidth" value="24" min="10" max="50" step="0.5">
+            </div>
+            <div class="form-group">
+                <label>Font Size (px)</label>
+                <input type="number" id="jobFontSize" value="22" min="10" max="50" step="1">
+            </div>
+        </div>
+
+        <div class="section-title">🏢 Company Positioning & Styling</div>
+
+        <div class="form-row">
+            <div class="form-group">
+                <label>Top Position (%)</label>
+                <input type="number" id="companyTop" value="43" min="0" max="100" step="0.5">
+            </div>
+            <div class="form-group">
+                <label>Right Position (%)</label>
+                <input type="number" id="companyRight" value="7" min="0" max="100" step="0.5">
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group">
+                <label>Width (%)</label>
+                <input type="number" id="companyWidth" value="24" min="10" max="50" step="0.5">
+            </div>
+            <div class="form-group">
+                <label>Font Size (px)</label>
+                <input type="number" id="companyFontSize" value="22" min="10" max="50" step="1">
+            </div>
+        </div>
+
+        <div class="dimensions-output" id="dimensionsOutput">
+            <strong>📊 Current Dimensions:</strong><br><br>
+            <strong>Name:</strong><br>
+            Top: <span id="dimNameTop">31</span>% | Right: <span id="dimNameRight">7</span>% | Width: <span id="dimNameWidth">24</span>% | Font: <span id="dimNameFont">28</span>px<br><br>
+            <strong>Job Title:</strong><br>
+            Top: <span id="dimJobTop">37</span>% | Right: <span id="dimJobRight">7</span>% | Width: <span id="dimJobWidth">24</span>% | Font: <span id="dimJobFont">22</span>px<br><br>
+            <strong>Company:</strong><br>
+            Top: <span id="dimCompanyTop">43</span>% | Right: <span id="dimCompanyRight">7</span>% | Width: <span id="dimCompanyWidth">24</span>% | Font: <span id="dimCompanyFont">22</span>px
+        </div>
+
+        <button class="btn btn-copy" id="copyDimensions" style="margin-top: 15px;">
+            📋 Copy Dimensions
+        </button>
     </div>
 
     <div class="preview-section">
         <div class="frame-preview">
-            <div class="badge-container">
-                <div class="badge-left">
-                    <div class="badge-title">EduHack-4</div>
-                    <div class="badge-event">TECH<br>HACKATHON</div>
-                    <div class="badge-tagline">Innovate • Create • Lead</div>
-                    <div class="badge-date">📅 By Sahaba Club</div>
-                </div>
-                <div class="badge-right">
+            <div class="badge-container" id="badgeContainer">
+                <img src="frame.jpg" alt="Badge Frame" class="frame-image">
+                <div class="badge-content">
                     <div class="photo-circle">
-                        <canvas id="canvas" width="172" height="172"></canvas>
-                        <div class="placeholder-circle" id="placeholder">👤</div>
+                        <div class="photo-inner">
+                            <canvas id="canvas" class="photo-canvas" width="400" height="400"></canvas>
+                            <div class="placeholder" id="placeholder">👤</div>
+                        </div>
                     </div>
-                    <div class="attendee-label">ATTENDEE</div>
+                    <div class="user-info-item" id="nameOverlay" style="top: 31%; right: 7%; width: 24%; font-size: 28px;">Your Name</div>
+                    <div class="user-info-item" id="jobOverlay" style="top: 37%; right: 7%; width: 24%; font-size: 22px;">Student/Working</div>
+                    <div class="user-info-item" id="companyOverlay" style="top: 43%; right: 7%; width: 24%; font-size: 22px;">Your Institution</div>
                 </div>
-            </div>
-            <div class="user-info" id="userInfo">
-                <div class="user-name" id="displayName">Your Name</div>
-                <div class="user-job" id="displayJob">Your Job Title</div>
-                <div class="user-company" id="displayCompany">Your Company</div>
             </div>
         </div>
 
         <div class="controls" id="controls">
             <label>🔍 Zoom: <span id="zoomValue">100%</span></label>
             <input type="range" id="zoomSlider" min="50" max="300" value="100">
-            <p class="hint">💡 Drag the photo to position it perfectly</p>
+            <p class="hint">💡 Drag the photo to position it | Drag the text boxes to reposition</p>
         </div>
 
         <div class="action-buttons" id="actionButtons">
-            <button class="btn btn-linkedin" id="linkedinBtn">
-                <span>📱</span> Share on LinkedIn
+            <button class="btn btn-download" id="downloadBtn">
+                📥 Download Badge
             </button>
-        </div>
-
-        <div class="caption-box" id="captionBox">
-            <h3>📝 LinkedIn Caption</h3>
-            <div class="caption-text" id="captionText">
-                🎉 Excited to be part of EduHack-4 organized by Sahaba Club! 
-                
-Ready to innovate, create, and collaborate with amazing minds in this tech hackathon.
-
-#EduHack4 #SahabaClub #TechHackathon #Innovation #Coding #Technology #Learning
-            </div>
-            <button class="btn btn-copy" onclick="copyCaption()">
-                📋 Copy Caption
+            <button class="btn btn-linkedin" id="linkedinBtn">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/>
+                </svg>
+                Share on LinkedIn
             </button>
         </div>
     </div>
@@ -531,35 +696,213 @@ const zoomSlider = document.getElementById("zoomSlider");
 const zoomValue = document.getElementById("zoomValue");
 const controlsDiv = document.getElementById("controls");
 const actionButtons = document.getElementById("actionButtons");
-const captionBox = document.getElementById("captionBox");
+const downloadBtn = document.getElementById("downloadBtn");
 const linkedinBtn = document.getElementById("linkedinBtn");
+const copyDimensionsBtn = document.getElementById("copyDimensions");
 
 const fullNameInput = document.getElementById("fullName");
 const jobTitleInput = document.getElementById("jobTitle");
 const companyInput = document.getElementById("company");
-const displayName = document.getElementById("displayName");
-const displayJob = document.getElementById("displayJob");
-const displayCompany = document.getElementById("displayCompany");
+const nameOverlay = document.getElementById("nameOverlay");
+const jobOverlay = document.getElementById("jobOverlay");
+const companyOverlay = document.getElementById("companyOverlay");
+const badgeContainer = document.getElementById("badgeContainer");
+
+const nameTopInput = document.getElementById("nameTop");
+const nameRightInput = document.getElementById("nameRight");
+const nameWidthInput = document.getElementById("nameWidth");
+const nameFontSizeInput = document.getElementById("nameFontSize");
+
+const jobTopInput = document.getElementById("jobTop");
+const jobRightInput = document.getElementById("jobRight");
+const jobWidthInput = document.getElementById("jobWidth");
+const jobFontSizeInput = document.getElementById("jobFontSize");
+
+const companyTopInput = document.getElementById("companyTop");
+const companyRightInput = document.getElementById("companyRight");
+const companyWidthInput = document.getElementById("companyWidth");
+const companyFontSizeInput = document.getElementById("companyFontSize");
 
 let uploadedImage = null;
 let imageScale = 1;
 let imageX = 0;
 let imageY = 0;
 let isDragging = false;
+let isDraggingName = false;
+let isDraggingJob = false;
+let isDraggingCompany = false;
 let lastMouseX = 0;
 let lastMouseY = 0;
+let downloadedImageUrl = null;
 
-// Update display names in real-time
 fullNameInput.addEventListener("input", function() {
-    displayName.textContent = this.value || "Your Name";
+    nameOverlay.textContent = this.value || "Your Name";
 });
 
 jobTitleInput.addEventListener("input", function() {
-    displayJob.textContent = this.value || "Student/Working";
+    jobOverlay.textContent = this.value || "Student/Working";
 });
 
 companyInput.addEventListener("input", function() {
-    displayCompany.textContent = this.value || "Your Institution";
+    companyOverlay.textContent = this.value || "Your Institution";
+});
+
+function updateNamePosition() {
+    const top = nameTopInput.value;
+    const right = nameRightInput.value;
+    const width = nameWidthInput.value;
+    const fontSize = nameFontSizeInput.value;
+
+    nameOverlay.style.top = top + '%';
+    nameOverlay.style.right = right + '%';
+    nameOverlay.style.width = width + '%';
+    nameOverlay.style.fontSize = fontSize + 'px';
+
+    document.getElementById('dimNameTop').textContent = top;
+    document.getElementById('dimNameRight').textContent = right;
+    document.getElementById('dimNameWidth').textContent = width;
+    document.getElementById('dimNameFont').textContent = fontSize;
+}
+
+function updateJobPosition() {
+    const top = jobTopInput.value;
+    const right = jobRightInput.value;
+    const width = jobWidthInput.value;
+    const fontSize = jobFontSizeInput.value;
+
+    jobOverlay.style.top = top + '%';
+    jobOverlay.style.right = right + '%';
+    jobOverlay.style.width = width + '%';
+    jobOverlay.style.fontSize = fontSize + 'px';
+
+    document.getElementById('dimJobTop').textContent = top;
+    document.getElementById('dimJobRight').textContent = right;
+    document.getElementById('dimJobWidth').textContent = width;
+    document.getElementById('dimJobFont').textContent = fontSize;
+}
+
+function updateCompanyPosition() {
+    const top = companyTopInput.value;
+    const right = companyRightInput.value;
+    const width = companyWidthInput.value;
+    const fontSize = companyFontSizeInput.value;
+
+    companyOverlay.style.top = top + '%';
+    companyOverlay.style.right = right + '%';
+    companyOverlay.style.width = width + '%';
+    companyOverlay.style.fontSize = fontSize + 'px';
+
+    document.getElementById('dimCompanyTop').textContent = top;
+    document.getElementById('dimCompanyRight').textContent = right;
+    document.getElementById('dimCompanyWidth').textContent = width;
+    document.getElementById('dimCompanyFont').textContent = fontSize;
+}
+
+nameTopInput.addEventListener("input", updateNamePosition);
+nameRightInput.addEventListener("input", updateNamePosition);
+nameWidthInput.addEventListener("input", updateNamePosition);
+nameFontSizeInput.addEventListener("input", updateNamePosition);
+
+jobTopInput.addEventListener("input", updateJobPosition);
+jobRightInput.addEventListener("input", updateJobPosition);
+jobWidthInput.addEventListener("input", updateJobPosition);
+jobFontSizeInput.addEventListener("input", updateJobPosition);
+
+companyTopInput.addEventListener("input", updateCompanyPosition);
+companyRightInput.addEventListener("input", updateCompanyPosition);
+companyWidthInput.addEventListener("input", updateCompanyPosition);
+companyFontSizeInput.addEventListener("input", updateCompanyPosition);
+
+updateNamePosition();
+updateJobPosition();
+updateCompanyPosition();
+
+nameOverlay.addEventListener('mousedown', function(e) {
+    e.stopPropagation();
+    isDraggingName = true;
+    lastMouseX = e.clientX;
+    lastMouseY = e.clientY;
+});
+
+jobOverlay.addEventListener('mousedown', function(e) {
+    e.stopPropagation();
+    isDraggingJob = true;
+    lastMouseX = e.clientX;
+    lastMouseY = e.clientY;
+});
+
+companyOverlay.addEventListener('mousedown', function(e) {
+    e.stopPropagation();
+    isDraggingCompany = true;
+    lastMouseX = e.clientX;
+    lastMouseY = e.clientY;
+});
+
+document.addEventListener('mousemove', function(e) {
+    const rect = badgeContainer.getBoundingClientRect();
+    const deltaX = e.clientX - lastMouseX;
+    const deltaY = e.clientY - lastMouseY;
+    const percentX = (deltaX / rect.width) * 100;
+    const percentY = (deltaY / rect.height) * 100;
+
+    if (isDraggingName) {
+        const currentTop = parseFloat(nameTopInput.value);
+        const currentRight = parseFloat(nameRightInput.value);
+        nameTopInput.value = (currentTop + percentY).toFixed(1);
+        nameRightInput.value = (currentRight - percentX).toFixed(1);
+        updateNamePosition();
+    } else if (isDraggingJob) {
+        const currentTop = parseFloat(jobTopInput.value);
+        const currentRight = parseFloat(jobRightInput.value);
+        jobTopInput.value = (currentTop + percentY).toFixed(1);
+        jobRightInput.value = (currentRight - percentX).toFixed(1);
+        updateJobPosition();
+    } else if (isDraggingCompany) {
+        const currentTop = parseFloat(companyTopInput.value);
+        const currentRight = parseFloat(companyRightInput.value);
+        companyTopInput.value = (currentTop + percentY).toFixed(1);
+        companyRightInput.value = (currentRight - percentX).toFixed(1);
+        updateCompanyPosition();
+    }
+    
+    lastMouseX = e.clientX;
+    lastMouseY = e.clientY;
+});
+
+document.addEventListener('mouseup', () => {
+    isDraggingName = false;
+    isDraggingJob = false;
+    isDraggingCompany = false;
+});
+
+copyDimensionsBtn.addEventListener('click', function() {
+    const dimensions = `
+NAME:
+Top: ${nameTopInput.value}%
+Right: ${nameRightInput.value}%
+Width: ${nameWidthInput.value}%
+Font: ${nameFontSizeInput.value}px
+
+JOB TITLE:
+Top: ${jobTopInput.value}%
+Right: ${jobRightInput.value}%
+Width: ${jobWidthInput.value}%
+Font: ${jobFontSizeInput.value}px
+
+COMPANY:
+Top: ${companyTopInput.value}%
+Right: ${companyRightInput.value}%
+Width: ${companyWidthInput.value}%
+Font: ${companyFontSizeInput.value}px
+    `.trim();
+    
+    navigator.clipboard.writeText(dimensions).then(() => {
+        const originalText = this.innerHTML;
+        this.innerHTML = '✅ Copied!';
+        setTimeout(() => {
+            this.innerHTML = originalText;
+        }, 2000);
+    });
 });
 
 uploadInput.addEventListener("change", function(e) {
@@ -577,14 +920,7 @@ uploadInput.addEventListener("change", function(e) {
         drawImage();
         placeholder.style.display = 'none';
         controlsDiv.classList.add('active');
-        
-        // Wait a moment, then generate and download
-        setTimeout(() => {
-            downloadImage();
-            // Show share buttons and caption after download
-            actionButtons.classList.add('active');
-            captionBox.classList.add('active');
-        }, 500);
+        actionButtons.classList.add('active');
     };
     img.src = URL.createObjectURL(file);
 });
@@ -595,46 +931,41 @@ zoomSlider.addEventListener("input", function() {
     drawImage();
 });
 
-// Mouse drag functionality
 canvas.addEventListener('mousedown', function(e) {
     if (!uploadedImage) return;
     isDragging = true;
-    lastMouseX = e.offsetX;
-    lastMouseY = e.offsetY;
+    const rect = canvas.getBoundingClientRect();
+    lastMouseX = (e.clientX - rect.left) * (canvas.width / rect.width);
+    lastMouseY = (e.clientY - rect.top) * (canvas.height / rect.height);
 });
 
 canvas.addEventListener('mousemove', function(e) {
     if (!isDragging || !uploadedImage) return;
     
-    const deltaX = e.offsetX - lastMouseX;
-    const deltaY = e.offsetY - lastMouseY;
+    const rect = canvas.getBoundingClientRect();
+    const mouseX = (e.clientX - rect.left) * (canvas.width / rect.width);
+    const mouseY = (e.clientY - rect.top) * (canvas.height / rect.height);
     
-    imageX += deltaX;
-    imageY += deltaY;
+    imageX += mouseX - lastMouseX;
+    imageY += mouseY - lastMouseY;
     
-    lastMouseX = e.offsetX;
-    lastMouseY = e.offsetY;
+    lastMouseX = mouseX;
+    lastMouseY = mouseY;
     
     drawImage();
 });
 
-canvas.addEventListener('mouseup', function() {
-    isDragging = false;
-});
+canvas.addEventListener('mouseup', () => isDragging = false);
+canvas.addEventListener('mouseleave', () => isDragging = false);
 
-canvas.addEventListener('mouseleave', function() {
-    isDragging = false;
-});
-
-// Touch support
 canvas.addEventListener('touchstart', function(e) {
     if (!uploadedImage) return;
     e.preventDefault();
     isDragging = true;
     const touch = e.touches[0];
     const rect = canvas.getBoundingClientRect();
-    lastMouseX = touch.clientX - rect.left;
-    lastMouseY = touch.clientY - rect.top;
+    lastMouseX = (touch.clientX - rect.left) * (canvas.width / rect.width);
+    lastMouseY = (touch.clientY - rect.top) * (canvas.height / rect.height);
 });
 
 canvas.addEventListener('touchmove', function(e) {
@@ -643,14 +974,11 @@ canvas.addEventListener('touchmove', function(e) {
     
     const touch = e.touches[0];
     const rect = canvas.getBoundingClientRect();
-    const touchX = touch.clientX - rect.left;
-    const touchY = touch.clientY - rect.top;
+    const touchX = (touch.clientX - rect.left) * (canvas.width / rect.width);
+    const touchY = (touch.clientY - rect.top) * (canvas.height / rect.height);
     
-    const deltaX = touchX - lastMouseX;
-    const deltaY = touchY - lastMouseY;
-    
-    imageX += deltaX;
-    imageY += deltaY;
+    imageX += touchX - lastMouseX;
+    imageY += touchY - lastMouseY;
     
     lastMouseX = touchX;
     lastMouseY = touchY;
@@ -658,9 +986,7 @@ canvas.addEventListener('touchmove', function(e) {
     drawImage();
 });
 
-canvas.addEventListener('touchend', function() {
-    isDragging = false;
-});
+canvas.addEventListener('touchend', () => isDragging = false);
 
 function drawImage() {
     if (!uploadedImage) return;
@@ -669,7 +995,7 @@ function drawImage() {
     ctx.save();
     
     ctx.beginPath();
-    ctx.arc(86, 86, 86, 0, Math.PI * 2);
+    ctx.arc(canvas.width/2, canvas.height/2, canvas.width/2, 0, Math.PI * 2);
     ctx.closePath();
     ctx.clip();
 
@@ -694,135 +1020,184 @@ function drawImage() {
     ctx.restore();
 }
 
-function downloadImage() {
-    if (!uploadedImage) return;
-
-    const finalCanvas = document.createElement('canvas');
-    finalCanvas.width = 1920;
-    finalCanvas.height = 1080;
-    const finalCtx = finalCanvas.getContext('2d');
-
-    // Background
-    const gradient = finalCtx.createLinearGradient(0, 0, 1920, 1080);
-    gradient.addColorStop(0, '#1a1a2e');
-    gradient.addColorStop(1, '#16213e');
-    finalCtx.fillStyle = gradient;
-    finalCtx.fillRect(0, 0, 1920, 1080);
-
-    // Left section text
-    finalCtx.fillStyle = '#4a9eff';
-    finalCtx.font = 'bold 42px Arial';
-    finalCtx.fillText('EduHack-4', 80, 120);
-
-    finalCtx.fillStyle = '#4ac3ff';
-    finalCtx.font = 'bold 90px Arial';
-    finalCtx.fillText('TECH', 80, 240);
-    finalCtx.fillText('HACKATHON', 80, 340);
-
-    finalCtx.fillStyle = '#bbb';
-    finalCtx.font = '28px Arial';
-    finalCtx.fillText('Innovate • Create • Lead', 80, 390);
-
-    finalCtx.fillStyle = 'rgba(74, 195, 255, 0.3)';
-    finalCtx.fillRect(80, 440, 280, 50);
-    finalCtx.fillStyle = 'white';
-    finalCtx.font = '26px Arial';
-    finalCtx.fillText('By Sahaba Club', 100, 472);
-
-    // Photo circle
-    finalCtx.save();
-    finalCtx.beginPath();
-    finalCtx.arc(1520, 360, 240, 0, Math.PI * 2);
-    finalCtx.closePath();
-    finalCtx.strokeStyle = '#4a9eff';
-    finalCtx.lineWidth = 12;
-    finalCtx.stroke();
-    finalCtx.clip();
-
-    const scale = 480 / 172;
-    const imgWidth = uploadedImage.width;
-    const imgHeight = uploadedImage.height;
+linkedinBtn.addEventListener("click", function(e) {
+    e.preventDefault();
     
-    let drawWidth, drawHeight;
-    if (imgWidth > imgHeight) {
-        drawHeight = 172 * imageScale * scale;
-        drawWidth = (imgWidth / imgHeight) * drawHeight;
+    if (!uploadedImage) {
+        alert('Please upload a photo first!');
+        return;
+    }
+
+    const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+    const isAndroid = /android/i.test(userAgent);
+    const isIOS = /iPad|iPhone|iPod/.test(userAgent) && !window.MSStream;
+    
+    let linkedinUrl;
+    
+    if (isAndroid || isIOS) {
+        linkedinUrl = 'linkedin://shareArticle';
     } else {
-        drawWidth = 172 * imageScale * scale;
-        drawHeight = (imgHeight / imgWidth) * drawWidth;
+        linkedinUrl = 'https://www.linkedin.com/feed/?shareActive=true';
     }
     
-    const offsetX = 1520 - drawWidth/2 + (imageX * scale);
-    const offsetY = 360 - drawHeight/2 + (imageY * scale);
-
-    finalCtx.drawImage(uploadedImage, 0, 0, imgWidth, imgHeight, offsetX, offsetY, drawWidth, drawHeight);
-    finalCtx.restore();
-
-    // ATTENDEE label
-    finalCtx.save();
-    finalCtx.translate(1770, 540);
-    finalCtx.rotate(Math.PI / 2);
-    finalCtx.fillStyle = '#4a9eff';
-    finalCtx.font = 'bold 38px Arial';
-    finalCtx.letterSpacing = '8px';
-    finalCtx.fillText('ATTENDEE', 0, 0);
-    finalCtx.restore();
-
-    // User info box
-    finalCtx.fillStyle = 'rgba(255,255,255,0.1)';
-    finalCtx.fillRect(80, 880, 1760, 140);
-
-    finalCtx.fillStyle = 'white';
-    finalCtx.font = 'bold 48px Arial';
-    finalCtx.fillText(fullNameInput.value || 'Your Name', 120, 945);
-
-    finalCtx.fillStyle = '#4ac3ff';
-    finalCtx.font = '32px Arial';
-    finalCtx.fillText(jobTitleInput.value || 'Student/Working', 120, 990);
-
-    finalCtx.fillStyle = '#aaa';
-    finalCtx.font = '28px Arial';
-    finalCtx.fillText(companyInput.value || 'Your Institution', 120, 1025);
-
-    // Download
-    const link = document.createElement("a");
-    link.download = "eduhack4-attendee-badge.png";
-    link.href = finalCanvas.toDataURL("image/png");
-    link.click();
-}
-
-linkedinBtn.addEventListener('click', function() {
-    // Detect if mobile device
-    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    const message = encodeURIComponent('Excited to share my EduHack-AI-4 badge! 🎉 #EduHackAI4 #SahabaClub');
     
-    if (isMobile) {
-        // For mobile, try the LinkedIn app deep link first, fallback to web
-        const linkedinAppUrl = 'linkedin://shareArticle?mini=true';
-        const linkedinWebUrl = 'https://www.linkedin.com/sharing/share-offsite/';
-        
-        // Try to open LinkedIn app
-        window.location.href = linkedinAppUrl;
-        
-        // Fallback to web after a short delay if app doesn't open
-        setTimeout(function() {
-            window.open(linkedinWebUrl, '_blank');
-        }, 500);
+    if (isAndroid || isIOS) {
+        window.location.href = linkedinUrl;
+        setTimeout(() => {
+            window.open('https://www.linkedin.com/feed/?shareActive=true&text=' + message, '_blank');
+        }, 1000);
     } else {
-        // Desktop - use the standard share URL
-        window.open('https://www.linkedin.com/feed/?shareActive=true', '_blank');
+        window.open(linkedinUrl, '_blank');
     }
+    
+    alert('📸 Please download your badge first, then share it on LinkedIn!');
 });
 
-function copyCaption() {
-    const caption = document.getElementById('captionText').textContent;
-    navigator.clipboard.writeText(caption).then(function() {
-        const btn = event.target;
-        const originalText = btn.innerHTML;
-        btn.innerHTML = '✅ Copied!';
-        setTimeout(() => {
-            btn.innerHTML = originalText;
-        }, 2000);
-    });
+downloadBtn.addEventListener("click", function() {
+    if (!uploadedImage) {
+        alert('Please upload a photo first!');
+        return;
+    }
+
+    const frameImg = new Image();
+    frameImg.crossOrigin = "anonymous";
+    
+    frameImg.onload = function() {
+        const finalCanvas = document.createElement('canvas');
+        finalCanvas.width = 1280;
+        finalCanvas.height = 760;
+        const finalCtx = finalCanvas.getContext('2d');
+
+        finalCtx.drawImage(frameImg, 0, 0, 1280, 760);
+
+        finalCtx.save();
+        
+        const circleX = 640;
+        const circleY = 380;
+        const circleRadius = 230;
+        
+        finalCtx.beginPath();
+        finalCtx.arc(circleX, circleY, circleRadius, 0, Math.PI * 2);
+        finalCtx.closePath();
+        finalCtx.clip();
+
+        const scale = (circleRadius * 2) / 400;
+        const imgW = uploadedImage.width;
+        const imgH = uploadedImage.height;
+        
+        let drawWidth, drawHeight;
+        if (imgW > imgH) {
+            drawHeight = 400 * imageScale * scale;
+            drawWidth = (imgW / imgH) * drawHeight;
+        } else {
+            drawWidth = 400 * imageScale * scale;
+            drawHeight = (imgH / imgW) * drawWidth;
+        }
+        
+        const offsetX = circleX - drawWidth/2 + (imageX * scale);
+        const offsetY = circleY - drawHeight/2 + (imageY * scale);
+
+        finalCtx.drawImage(uploadedImage, 0, 0, imgW, imgH, offsetX, offsetY, drawWidth, drawHeight);
+        finalCtx.restore();
+
+        finalCtx.fillStyle = 'white';
+        finalCtx.shadowColor = 'rgba(0, 0, 0, 0.9)';
+        finalCtx.shadowBlur = 6;
+        finalCtx.shadowOffsetX = 2;
+        finalCtx.shadowOffsetY = 2;
+        finalCtx.textAlign = 'right';
+        
+        const nameTopPercent = parseFloat(nameTopInput.value);
+        const nameRightPercent = parseFloat(nameRightInput.value);
+        const nameWidthPercent = parseFloat(nameWidthInput.value);
+        const nameFont = parseInt(nameFontSizeInput.value);
+        
+        const nameRight = 1280 * (nameRightPercent / 100);
+        const nameY = 760 * (nameTopPercent / 100);
+        const nameMaxWidth = 1280 * (nameWidthPercent / 100);
+        
+        finalCtx.font = `bold ${nameFont}px Arial`;
+        const nameText = fullNameInput.value.trim() || 'Your Name';
+        wrapTextRight(finalCtx, nameText, 1280 - nameRight, nameY, nameMaxWidth, nameFont * 1.2, 2);
+
+        const jobTopPercent = parseFloat(jobTopInput.value);
+        const jobRightPercent = parseFloat(jobRightInput.value);
+        const jobWidthPercent = parseFloat(jobWidthInput.value);
+        const jobFont = parseInt(jobFontSizeInput.value);
+        
+        const jobRight = 1280 * (jobRightPercent / 100);
+        const jobY = 760 * (jobTopPercent / 100);
+        const jobMaxWidth = 1280 * (jobWidthPercent / 100);
+        
+        finalCtx.font = `bold ${jobFont}px Arial`;
+        const jobText = jobTitleInput.value.trim() || 'Student/Working';
+        wrapTextRight(finalCtx, jobText, 1280 - jobRight, jobY, jobMaxWidth, jobFont * 1.2, 2);
+
+        const companyTopPercent = parseFloat(companyTopInput.value);
+        const companyRightPercent = parseFloat(companyRightInput.value);
+        const companyWidthPercent = parseFloat(companyWidthInput.value);
+        const companyFont = parseInt(companyFontSizeInput.value);
+        
+        const companyRight = 1280 * (companyRightPercent / 100);
+        const companyY = 760 * (companyTopPercent / 100);
+        const companyMaxWidth = 1280 * (companyWidthPercent / 100);
+        
+        finalCtx.font = `bold ${companyFont}px Arial`;
+        const companyText = companyInput.value.trim() || 'Your Institution';
+        wrapTextRight(finalCtx, companyText, 1280 - companyRight, companyY, companyMaxWidth, companyFont * 1.2, 2);
+
+        downloadedImageUrl = finalCanvas.toDataURL("image/png");
+        
+        const link = document.createElement("a");
+        link.download = "eduhack-ai-4-badge.png";
+        link.href = downloadedImageUrl;
+        link.click();
+    };
+    
+    frameImg.onerror = function() {
+        alert('Error loading frame.jpg. Make sure the file is in the same folder.');
+    };
+    
+    frameImg.src = 'frame.jpg';
+});
+
+function wrapTextRight(ctx, text, x, y, maxWidth, lineHeight, maxLines) {
+    const words = text.split(' ');
+    let lines = [];
+    let currentLine = '';
+    
+    for (let i = 0; i < words.length; i++) {
+        const testLine = currentLine + (currentLine ? ' ' : '') + words[i];
+        const metrics = ctx.measureText(testLine);
+        
+        if (metrics.width > maxWidth && currentLine !== '') {
+            lines.push(currentLine);
+            currentLine = words[i];
+            
+            if (lines.length >= maxLines - 1) {
+                const remaining = words.slice(i + 1);
+                if (remaining.length > 0) {
+                    currentLine += ' ' + remaining.join(' ');
+                    if (ctx.measureText(currentLine).width > maxWidth) {
+                        currentLine = currentLine.substring(0, currentLine.length - 3) + '...';
+                    }
+                }
+                lines.push(currentLine);
+                break;
+            }
+        } else {
+            currentLine = testLine;
+        }
+    }
+    
+    if (lines.length < maxLines && currentLine) {
+        lines.push(currentLine);
+    }
+    
+    for (let i = 0; i < lines.length; i++) {
+        ctx.fillText(lines[i], x, y + (i * lineHeight));
+    }
 }
 </script>
 
