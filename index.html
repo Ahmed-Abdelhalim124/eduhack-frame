@@ -156,12 +156,6 @@
         box-shadow: 0 0 20px rgba(138, 43, 226, 0.3);
     }
 
-    .form-row {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 12px;
-    }
-
     .upload-area {
         border: 3px dashed #8a2be2;
         border-radius: 15px;
@@ -277,24 +271,14 @@
     .user-info-item {
         position: absolute;
         z-index: 15;
-        cursor: move;
-        background: rgba(138, 43, 226, 0.1);
-        border: 2px dashed rgba(138, 43, 226, 0.5);
-        border-radius: 8px;
-        padding: 8px;
-        color: white;
-        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.9);
+        color: transparent;
         word-wrap: break-word;
-        line-height: 1.2;
-        font-weight: bold;
-        font-family: Arial, sans-serif;
+        line-height: 1.3;
+        font-weight: 600;
+        font-family: 'Georgia', 'Times New Roman', Times, serif;
         text-align: left;
-    }
-
-    .user-info-item:hover {
-        background: rgba(138, 43, 226, 0.2);
-        border-color: #8a2be2;
-        box-shadow: 0 0 20px rgba(138, 43, 226, 0.5);
+        pointer-events: none;
+        letter-spacing: 0.3px;
     }
 
     .controls {
@@ -385,11 +369,6 @@
         color: white;
     }
 
-    .btn-copy {
-        background: linear-gradient(135deg, #ec4899, #8a2be2);
-        color: white;
-    }
-
     .caption-container {
         display: none;
         background: rgba(0, 217, 255, 0.1);
@@ -439,22 +418,6 @@
         font-style: italic;
     }
 
-    .dimensions-output {
-        background: rgba(0, 217, 255, 0.1);
-        border: 2px solid rgba(0, 217, 255, 0.3);
-        border-radius: 12px;
-        padding: 15px;
-        margin-top: 20px;
-        color: #00d9ff;
-        font-family: 'Courier New', monospace;
-        font-size: clamp(0.75em, 2vw, 0.9em);
-        line-height: 1.8;
-    }
-
-    .dimensions-output strong {
-        color: #ec4899;
-    }
-
     @media (min-width: 1024px) {
         .main-container {
             grid-template-columns: 1fr 1.2fr;
@@ -500,16 +463,8 @@
             padding: 20px;
         }
 
-        .form-row {
-            grid-template-columns: 1fr;
-        }
-
         .section-title {
             margin: 20px 0 12px 0;
-        }
-
-        .dimensions-output {
-            padding: 12px;
         }
     }
 
@@ -602,92 +557,6 @@
             </div>
             <input type="file" id="upload" accept="image/*" style="display:none;">
         </div>
-
-        <div class="section-title">🎨 Name Positioning & Styling</div>
-
-        <div class="form-row">
-            <div class="form-group">
-                <label>Top Position (%)</label>
-                <input type="number" id="nameTop" value="31" min="0" max="100" step="0.5">
-            </div>
-            <div class="form-group">
-                <label>Right Position (%)</label>
-                <input type="number" id="nameRight" value="7" min="0" max="100" step="0.5">
-            </div>
-        </div>
-
-        <div class="form-row">
-            <div class="form-group">
-                <label>Width (%)</label>
-                <input type="number" id="nameWidth" value="24" min="10" max="50" step="0.5">
-            </div>
-            <div class="form-group">
-                <label>Font Size (px)</label>
-                <input type="number" id="nameFontSize" value="28" min="10" max="60" step="1">
-            </div>
-        </div>
-
-        <div class="section-title">💼 Job Title Positioning & Styling</div>
-
-        <div class="form-row">
-            <div class="form-group">
-                <label>Top Position (%)</label>
-                <input type="number" id="jobTop" value="37" min="0" max="100" step="0.5">
-            </div>
-            <div class="form-group">
-                <label>Right Position (%)</label>
-                <input type="number" id="jobRight" value="7" min="0" max="100" step="0.5">
-            </div>
-        </div>
-
-        <div class="form-row">
-            <div class="form-group">
-                <label>Width (%)</label>
-                <input type="number" id="jobWidth" value="24" min="10" max="50" step="0.5">
-            </div>
-            <div class="form-group">
-                <label>Font Size (px)</label>
-                <input type="number" id="jobFontSize" value="22" min="10" max="50" step="1">
-            </div>
-        </div>
-
-        <div class="section-title">🏢 Company Positioning & Styling</div>
-
-        <div class="form-row">
-            <div class="form-group">
-                <label>Top Position (%)</label>
-                <input type="number" id="companyTop" value="43" min="0" max="100" step="0.5">
-            </div>
-            <div class="form-group">
-                <label>Right Position (%)</label>
-                <input type="number" id="companyRight" value="7" min="0" max="100" step="0.5">
-            </div>
-        </div>
-
-        <div class="form-row">
-            <div class="form-group">
-                <label>Width (%)</label>
-                <input type="number" id="companyWidth" value="24" min="10" max="50" step="0.5">
-            </div>
-            <div class="form-group">
-                <label>Font Size (px)</label>
-                <input type="number" id="companyFontSize" value="22" min="10" max="50" step="1">
-            </div>
-        </div>
-
-        <div class="dimensions-output" id="dimensionsOutput">
-            <strong>📊 Current Dimensions:</strong><br><br>
-            <strong>Name:</strong><br>
-            Top: <span id="dimNameTop">31</span>% | Right: <span id="dimNameRight">7</span>% | Width: <span id="dimNameWidth">24</span>% | Font: <span id="dimNameFont">28</span>px<br><br>
-            <strong>Job Title:</strong><br>
-            Top: <span id="dimJobTop">37</span>% | Right: <span id="dimJobRight">7</span>% | Width: <span id="dimJobWidth">24</span>% | Font: <span id="dimJobFont">22</span>px<br><br>
-            <strong>Company:</strong><br>
-            Top: <span id="dimCompanyTop">43</span>% | Right: <span id="dimCompanyRight">7</span>% | Width: <span id="dimCompanyWidth">24</span>% | Font: <span id="dimCompanyFont">22</span>px
-        </div>
-
-        <button class="btn btn-copy" id="copyDimensions" style="margin-top: 15px;">
-            📋 Copy Dimensions
-        </button>
     </div>
 
     <div class="preview-section">
@@ -701,9 +570,9 @@
                             <div class="placeholder" id="placeholder">👤</div>
                         </div>
                     </div>
-                    <div class="user-info-item" id="nameOverlay" style="top: 31%; right: 7%; width: 24%; font-size: 28px;">Your Name</div>
-                    <div class="user-info-item" id="jobOverlay" style="top: 37%; right: 7%; width: 24%; font-size: 22px;">Student/Working</div>
-                    <div class="user-info-item" id="companyOverlay" style="top: 43%; right: 7%; width: 24%; font-size: 22px;">Your Institution</div>
+                    <div class="user-info-item" id="nameOverlay" style="top: 36.4%; left: 68.4%; width: 28%; font-size: 28px;">Your Name</div>
+                    <div class="user-info-item" id="jobOverlay" style="top: 47.6%; left: 68.4%; width: 28%; font-size: 22px;">Student/Working</div>
+                    <div class="user-info-item" id="companyOverlay" style="top: 57.8%; left: 68.4%; width: 28%; font-size: 22px;">Your Institution</div>
                 </div>
             </div>
         </div>
@@ -711,7 +580,7 @@
         <div class="controls" id="controls">
             <label>🔍 Zoom: <span id="zoomValue">100%</span></label>
             <input type="range" id="zoomSlider" min="50" max="300" value="100">
-            <p class="hint">💡 Drag the photo to position it | Drag the text boxes to reposition</p>
+            <p class="hint">💡 Drag the photo to position it perfectly</p>
         </div>
 
         <div class="action-buttons" id="actionButtons">
@@ -753,7 +622,6 @@ const controlsDiv = document.getElementById("controls");
 const actionButtons = document.getElementById("actionButtons");
 const downloadBtn = document.getElementById("downloadBtn");
 const linkedinBtn = document.getElementById("linkedinBtn");
-const copyDimensionsBtn = document.getElementById("copyDimensions");
 const captionContainer = document.getElementById("captionContainer");
 const copyCaptionBtn = document.getElementById("copyCaptionBtn");
 const captionText = document.getElementById("captionText");
@@ -764,203 +632,42 @@ const companyInput = document.getElementById("company");
 const nameOverlay = document.getElementById("nameOverlay");
 const jobOverlay = document.getElementById("jobOverlay");
 const companyOverlay = document.getElementById("companyOverlay");
-const badgeContainer = document.getElementById("badgeContainer");
-
-const nameTopInput = document.getElementById("nameTop");
-const nameRightInput = document.getElementById("nameRight");
-const nameWidthInput = document.getElementById("nameWidth");
-const nameFontSizeInput = document.getElementById("nameFontSize");
-
-const jobTopInput = document.getElementById("jobTop");
-const jobRightInput = document.getElementById("jobRight");
-const jobWidthInput = document.getElementById("jobWidth");
-const jobFontSizeInput = document.getElementById("jobFontSize");
-
-const companyTopInput = document.getElementById("companyTop");
-const companyRightInput = document.getElementById("companyRight");
-const companyWidthInput = document.getElementById("companyWidth");
-const companyFontSizeInput = document.getElementById("companyFontSize");
 
 let uploadedImage = null;
 let imageScale = 1;
 let imageX = 0;
 let imageY = 0;
 let isDragging = false;
-let isDraggingName = false;
-let isDraggingJob = false;
-let isDraggingCompany = false;
 let lastMouseX = 0;
 let lastMouseY = 0;
-let downloadedImageUrl = null;
+
+function calculateDynamicFontSize(text, baseSize) {
+    const length = text.length;
+    if (length <= 18) return baseSize;
+    if (length <= 30) return baseSize * 0.9;
+    if (length <= 40) return baseSize * 0.8;
+    return baseSize * 0.7;
+}
 
 fullNameInput.addEventListener("input", function() {
-    nameOverlay.textContent = this.value || "Your Name";
+    const text = this.value || "Your Name";
+    nameOverlay.textContent = text;
+    const fontSize = calculateDynamicFontSize(text, 28);
+    nameOverlay.style.fontSize = fontSize + 'px';
 });
 
 jobTitleInput.addEventListener("input", function() {
-    jobOverlay.textContent = this.value || "Student/Working";
+    const text = this.value || "Student/Working";
+    jobOverlay.textContent = text;
+    const fontSize = calculateDynamicFontSize(text, 22);
+    jobOverlay.style.fontSize = fontSize + 'px';
 });
 
 companyInput.addEventListener("input", function() {
-    companyOverlay.textContent = this.value || "Your Institution";
-});
-
-function updateNamePosition() {
-    const top = nameTopInput.value;
-    const right = nameRightInput.value;
-    const width = nameWidthInput.value;
-    const fontSize = nameFontSizeInput.value;
-
-    nameOverlay.style.top = top + '%';
-    nameOverlay.style.right = right + '%';
-    nameOverlay.style.width = width + '%';
-    nameOverlay.style.fontSize = fontSize + 'px';
-
-    document.getElementById('dimNameTop').textContent = top;
-    document.getElementById('dimNameRight').textContent = right;
-    document.getElementById('dimNameWidth').textContent = width;
-    document.getElementById('dimNameFont').textContent = fontSize;
-}
-
-function updateJobPosition() {
-    const top = jobTopInput.value;
-    const right = jobRightInput.value;
-    const width = jobWidthInput.value;
-    const fontSize = jobFontSizeInput.value;
-
-    jobOverlay.style.top = top + '%';
-    jobOverlay.style.right = right + '%';
-    jobOverlay.style.width = width + '%';
-    jobOverlay.style.fontSize = fontSize + 'px';
-
-    document.getElementById('dimJobTop').textContent = top;
-    document.getElementById('dimJobRight').textContent = right;
-    document.getElementById('dimJobWidth').textContent = width;
-    document.getElementById('dimJobFont').textContent = fontSize;
-}
-
-function updateCompanyPosition() {
-    const top = companyTopInput.value;
-    const right = companyRightInput.value;
-    const width = companyWidthInput.value;
-    const fontSize = companyFontSizeInput.value;
-
-    companyOverlay.style.top = top + '%';
-    companyOverlay.style.right = right + '%';
-    companyOverlay.style.width = width + '%';
+    const text = this.value || "Your Institution";
+    companyOverlay.textContent = text;
+    const fontSize = calculateDynamicFontSize(text, 22);
     companyOverlay.style.fontSize = fontSize + 'px';
-
-    document.getElementById('dimCompanyTop').textContent = top;
-    document.getElementById('dimCompanyRight').textContent = right;
-    document.getElementById('dimCompanyWidth').textContent = width;
-    document.getElementById('dimCompanyFont').textContent = fontSize;
-}
-
-nameTopInput.addEventListener("input", updateNamePosition);
-nameRightInput.addEventListener("input", updateNamePosition);
-nameWidthInput.addEventListener("input", updateNamePosition);
-nameFontSizeInput.addEventListener("input", updateNamePosition);
-
-jobTopInput.addEventListener("input", updateJobPosition);
-jobRightInput.addEventListener("input", updateJobPosition);
-jobWidthInput.addEventListener("input", updateJobPosition);
-jobFontSizeInput.addEventListener("input", updateJobPosition);
-
-companyTopInput.addEventListener("input", updateCompanyPosition);
-companyRightInput.addEventListener("input", updateCompanyPosition);
-companyWidthInput.addEventListener("input", updateCompanyPosition);
-companyFontSizeInput.addEventListener("input", updateCompanyPosition);
-
-updateNamePosition();
-updateJobPosition();
-updateCompanyPosition();
-
-nameOverlay.addEventListener('mousedown', function(e) {
-    e.stopPropagation();
-    isDraggingName = true;
-    lastMouseX = e.clientX;
-    lastMouseY = e.clientY;
-});
-
-jobOverlay.addEventListener('mousedown', function(e) {
-    e.stopPropagation();
-    isDraggingJob = true;
-    lastMouseX = e.clientX;
-    lastMouseY = e.clientY;
-});
-
-companyOverlay.addEventListener('mousedown', function(e) {
-    e.stopPropagation();
-    isDraggingCompany = true;
-    lastMouseX = e.clientX;
-    lastMouseY = e.clientY;
-});
-
-document.addEventListener('mousemove', function(e) {
-    const rect = badgeContainer.getBoundingClientRect();
-    const deltaX = e.clientX - lastMouseX;
-    const deltaY = e.clientY - lastMouseY;
-    const percentX = (deltaX / rect.width) * 100;
-    const percentY = (deltaY / rect.height) * 100;
-
-    if (isDraggingName) {
-        const currentTop = parseFloat(nameTopInput.value);
-        const currentRight = parseFloat(nameRightInput.value);
-        nameTopInput.value = (currentTop + percentY).toFixed(1);
-        nameRightInput.value = (currentRight - percentX).toFixed(1);
-        updateNamePosition();
-    } else if (isDraggingJob) {
-        const currentTop = parseFloat(jobTopInput.value);
-        const currentRight = parseFloat(jobRightInput.value);
-        jobTopInput.value = (currentTop + percentY).toFixed(1);
-        jobRightInput.value = (currentRight - percentX).toFixed(1);
-        updateJobPosition();
-    } else if (isDraggingCompany) {
-        const currentTop = parseFloat(companyTopInput.value);
-        const currentRight = parseFloat(companyRightInput.value);
-        companyTopInput.value = (currentTop + percentY).toFixed(1);
-        companyRightInput.value = (currentRight - percentX).toFixed(1);
-        updateCompanyPosition();
-    }
-    
-    lastMouseX = e.clientX;
-    lastMouseY = e.clientY;
-});
-
-document.addEventListener('mouseup', () => {
-    isDraggingName = false;
-    isDraggingJob = false;
-    isDraggingCompany = false;
-});
-
-copyDimensionsBtn.addEventListener('click', function() {
-    const dimensions = `
-NAME:
-Top: ${nameTopInput.value}%
-Right: ${nameRightInput.value}%
-Width: ${nameWidthInput.value}%
-Font: ${nameFontSizeInput.value}px
-
-JOB TITLE:
-Top: ${jobTopInput.value}%
-Right: ${jobRightInput.value}%
-Width: ${jobWidthInput.value}%
-Font: ${jobFontSizeInput.value}px
-
-COMPANY:
-Top: ${companyTopInput.value}%
-Right: ${companyRightInput.value}%
-Width: ${companyWidthInput.value}%
-Font: ${companyFontSizeInput.value}px
-    `.trim();
-    
-    navigator.clipboard.writeText(dimensions).then(() => {
-        const originalText = this.innerHTML;
-        this.innerHTML = '✅ Copied!';
-        setTimeout(() => {
-            this.innerHTML = originalText;
-        }, 2000);
-    });
 });
 
 copyCaptionBtn.addEventListener('click', function() {
@@ -1117,9 +824,20 @@ linkedinBtn.addEventListener("click", function(e) {
         return;
     }
 
-    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
+    const isAndroid = /Android/.test(navigator.userAgent);
     
-    if (isMobile) {
+    if (isIOS) {
+        window.location.href = 'linkedin://';
+        
+        setTimeout(() => {
+            window.open('https://www.linkedin.com/feed/', '_blank');
+        }, 2500);
+        
+        setTimeout(() => {
+            alert('📸 Upload your downloaded badge when creating your LinkedIn post!\n\n💡 Tip: Use the "Copy Caption" button below to get the caption text.');
+        }, 3000);
+    } else if (isAndroid) {
         const linkedinAppUrl = 'linkedin://';
         const linkedinWebUrl = 'https://www.linkedin.com/feed/';
         
@@ -1196,46 +914,43 @@ downloadBtn.addEventListener("click", function() {
         finalCtx.shadowOffsetY = 2;
         finalCtx.textAlign = 'left';
         
-        const nameTopPercent = parseFloat(nameTopInput.value);
-        const nameRightPercent = parseFloat(nameRightInput.value);
-        const nameWidthPercent = parseFloat(nameWidthInput.value);
-        const nameFont = parseInt(nameFontSizeInput.value);
+        const nameTopPercent = 36.4;
+        const nameLeftPercent = 72.4;
         
-        const nameX = 1280 - (1280 * (nameRightPercent / 100)) - (1280 * (nameWidthPercent / 100));
+        const nameX = 1280 * (nameLeftPercent / 100);
         const nameY = 760 * (nameTopPercent / 100);
-        const nameMaxWidth = 1280 * (nameWidthPercent / 100);
+        const nameMaxWidth = 1280 * 0.28;
         
-        finalCtx.font = `bold ${nameFont}px Arial`;
         const nameText = fullNameInput.value.trim() || 'Your Name';
-        wrapTextLeft(finalCtx, nameText, nameX, nameY, nameMaxWidth, nameFont * 1.2, 2);
+        const nameFontSize = calculateDynamicFontSize(nameText, 28);
+        finalCtx.font = `600 ${nameFontSize}px 'Georgia', 'Times New Roman', Times, serif`;
+        wrapTextLeft(finalCtx, nameText, nameX, nameY, nameMaxWidth, nameFontSize * 1.3, 3);
 
-        const jobTopPercent = parseFloat(jobTopInput.value);
-        const jobRightPercent = parseFloat(jobRightInput.value);
-        const jobWidthPercent = parseFloat(jobWidthInput.value);
-        const jobFont = parseInt(jobFontSizeInput.value);
+        const jobTopPercent = 47.6;
+        const jobLeftPercent = 72.4;
         
-        const jobX = 1280 - (1280 * (jobRightPercent / 100)) - (1280 * (jobWidthPercent / 100));
+        const jobX = 1280 * (jobLeftPercent / 100);
         const jobY = 760 * (jobTopPercent / 100);
-        const jobMaxWidth = 1280 * (jobWidthPercent / 100);
+        const jobMaxWidth = 1280 * 0.28;
         
-        finalCtx.font = `bold ${jobFont}px Arial`;
         const jobText = jobTitleInput.value.trim() || 'Student/Working';
-        wrapTextLeft(finalCtx, jobText, jobX, jobY, jobMaxWidth, jobFont * 1.2, 2);
+        const jobFontSize = calculateDynamicFontSize(jobText, 22);
+        finalCtx.font = `600 ${jobFontSize}px 'Georgia', 'Times New Roman', Times, serif`;
+        wrapTextLeft(finalCtx, jobText, jobX, jobY, jobMaxWidth, jobFontSize * 1.3, 3);
 
-        const companyTopPercent = parseFloat(companyTopInput.value);
-        const companyRightPercent = parseFloat(companyRightInput.value);
-        const companyWidthPercent = parseFloat(companyWidthInput.value);
-        const companyFont = parseInt(companyFontSizeInput.value);
+        const companyTopPercent = 57.8;
+        const companyLeftPercent = 72.4;
         
-        const companyX = 1280 - (1280 * (companyRightPercent / 100)) - (1280 * (companyWidthPercent / 100));
+        const companyX = 1280 * (companyLeftPercent / 100);
         const companyY = 760 * (companyTopPercent / 100);
-        const companyMaxWidth = 1280 * (companyWidthPercent / 100);
+        const companyMaxWidth = 1280 * 0.28;
         
-        finalCtx.font = `bold ${companyFont}px Arial`;
         const companyText = companyInput.value.trim() || 'Your Institution';
-        wrapTextLeft(finalCtx, companyText, companyX, companyY, companyMaxWidth, companyFont * 1.2, 2);
+        const companyFontSize = calculateDynamicFontSize(companyText, 22);
+        finalCtx.font = `600 ${companyFontSize}px 'Georgia', 'Times New Roman', Times, serif`;
+        wrapTextLeft(finalCtx, companyText, companyX, companyY, companyMaxWidth, companyFontSize * 1.3, 3);
 
-        downloadedImageUrl = finalCanvas.toDataURL("image/png");
+        const downloadedImageUrl = finalCanvas.toDataURL("image/png");
         
         const link = document.createElement("a");
         link.download = "eduhack-ai-4-badge.png";
