@@ -45,7 +45,7 @@
     }
 
     .header {
-        background: #161b2b;
+        background: linear-gradient(90deg, #161b2b 0%, #15182a 30%, #000000 70%, #000000 100%);
         backdrop-filter: blur(10px);
         padding: 15px 20px;
         box-shadow: 0 4px 30px rgba(138, 43, 226, 0.2);
@@ -61,6 +61,13 @@
     }
 
     .header-logo {
+        width: 150px;
+        height: 150px;
+        object-fit: contain;
+        flex-shrink: 0;
+    }
+
+    .header-right-logo {
         width: 150px;
         height: 150px;
         object-fit: contain;
@@ -85,11 +92,6 @@
         color: rgba(255,255,255,0.9);
         margin-top: 5px;
         font-size: clamp(0.8em, 2.5vw, 1.1em);
-    }
-
-    .header-spacer {
-        width: 150px;
-        flex-shrink: 0;
     }
 
     .main-container {
@@ -274,7 +276,7 @@
         color: transparent;
         word-wrap: break-word;
         line-height: 1.3;
-        font-weight: 600;
+        font-weight: 500;
         font-family: 'Georgia', 'Times New Roman', Times, serif;
         text-align: left;
         pointer-events: none;
@@ -415,7 +417,7 @@
         color: rgba(255, 255, 255, 0.6);
         font-size: clamp(0.7em, 2vw, 0.85em);
         margin-top: 10px;
-        font-style: italic;
+        font-style: Times;
     }
 
     @media (min-width: 1024px) {
@@ -440,8 +442,9 @@
             height: 120px;
         }
 
-        .header-spacer {
+        .header-right-logo {
             width: 120px;
+            height: 120px;
         }
 
         .header {
@@ -483,8 +486,9 @@
             height: 100px;
         }
 
-        .header-spacer {
-            width: 80px;
+        .header-right-logo {
+            width: 100px;
+            height: 100px;
         }
 
         .form-section, .preview-section {
@@ -525,14 +529,14 @@
     <img src="logo.png" alt="Sahaba Club Logo" class="header-logo">
     <div class="header-content">
         <h1>EduHack-AI-4 Attendee Frame Generator</h1>
-        <p>Made by Sahaba Club</p>
+        
     </div>
-    <div class="header-spacer"></div>
+    <img src="right.png" alt="Right Logo" class="header-right-logo">
 </div>
 
 <div class="main-container">
     <div class="form-section">
-        <div class="section-title">📝 User Information</div>
+        <div class="section-title"> User Information</div>
         
         <div class="form-group">
             <label>FULL NAME</label>
@@ -570,9 +574,9 @@
                             <div class="placeholder" id="placeholder">👤</div>
                         </div>
                     </div>
-                    <div class="user-info-item" id="nameOverlay" style="top: 36.4%; left: 68.4%; width: 28%; font-size: 28px;">Your Name</div>
-                    <div class="user-info-item" id="jobOverlay" style="top: 47.6%; left: 68.4%; width: 28%; font-size: 22px;">Student/Working</div>
-                    <div class="user-info-item" id="companyOverlay" style="top: 57.8%; left: 68.4%; width: 28%; font-size: 22px;">Your Institution</div>
+                    <div class="user-info-item" id="nameOverlay" style="top: 36.4%; left: 68.4%; width: 28%; font-size: 25px;">Your Name</div>
+                    <div class="user-info-item" id="jobOverlay" style="top: 47.6%; left: 68.4%; width: 28%; font-size: 20px;">Student/Working</div>
+                    <div class="user-info-item" id="companyOverlay" style="top: 57.8%; left: 68.4%; width: 28%; font-size: 20px;">Your Institution</div>
                 </div>
             </div>
         </div>
